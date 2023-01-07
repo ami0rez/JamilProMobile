@@ -1,0 +1,13 @@
+<div
+  *ngFor="let type of types"
+  (click)="select(type)"
+  class="business-type {{ type.selected ? 'selected' : '' }}{{
+    selctedCount == maxSelected && !type.selected ? 'disabled' : ''
+  }}"
+>
+  <ion-img
+    class="image"
+    src="../../../../assets/images/salon-types/{{ type.key }}.svg"
+  ></ion-img>
+  <div class="typeName">{{ type.name }}</div>
+</div>

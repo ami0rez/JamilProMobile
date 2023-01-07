@@ -1,0 +1,191 @@
+<ion-content [fullscreen]="true">
+  <!-- Login Page -->
+  <div class="container" *ngIf="pageObject.screen == 'signin'">
+    <ion-img class="login-image" src="../../assets/login.png"></ion-img>
+    <div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@signin.email">Email</legend>
+          <ion-input
+            [(ngModel)]="pageObject.data.email"
+            type="email"
+            placeholder="name@domain.com"
+          ></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@signin.password">Password</legend>
+          <ion-input
+            [(ngModel)]="pageObject.data.password"
+            type="password"
+            placeholder="*******"
+          ></ion-input>
+        </fieldset>
+      </ion-item>
+      <p class="forget-text">
+        <a (click)="change('forget')" i18n="@@signin.forgotPassword"
+          >Forgot Password?</a
+        >
+      </p>
+      <ion-button class="login-button mb-40" (click)="login()" expand="block"
+        >Login</ion-button
+      >
+      <div class="devider">
+        <span class="content" i18n="@@signin.orSigninWith"
+          >Or Connect with</span
+        >
+      </div>
+      <div class="auth-controls mb-5">
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-icon name="logo-google" (click)="googleSignIn()"></ion-icon>
+        <ion-icon name="logo-twitter"></ion-icon>
+      </div>
+      <p class="signup-text">
+        <span i18n="@@signin.amNewMember"
+          >I'm a new user</span
+        >&nbsp;<a i18n="@@signin.signUp" (click)="signup()">Sign Up?</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Sign up page -->
+  <div class="container" *ngIf="pageObject.screen == 'signup'">
+    <ion-img class="login-image min" src="../../assets/login.png"></ion-img>
+    <div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@signup.iam">I am</legend>
+          <ion-list>
+            <ion-item>
+              <ion-select
+                [(ngModel)]="pageObject.data.accountType"
+                placeholder="Account Type"
+                i18n-placeholder="@@signup.accountType"
+              >
+                <ion-select-option value="1" i18n="@@signup.barber"
+                  >Barber</ion-select-option
+                >
+                <ion-select-option value="2" i18n="@@signup.client"
+                  >Client</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@signup.firstName">First Name</legend>
+          <ion-input
+            [(ngModel)]="pageObject.data.firstName"
+            type="text"
+            placeholder="John"
+          ></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@signup.lastName">Last Name</legend>
+          <ion-input
+            [(ngModel)]="pageObject.data.lastName"
+            type="text"
+            placeholder="Doe"
+          ></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@signup.phoneNumber">Phone Number</legend>
+          <ion-input
+            [(ngModel)]="pageObject.data.phoneNumber"
+            type="text"
+            placeholder="0600000000"
+          ></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@signup.email">Email</legend>
+          <ion-input
+            [(ngModel)]="pageObject.data.email"
+            type="email"
+            placeholder="john@doe.com"
+          ></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@signup.password">Password</legend>
+          <ion-input
+            [(ngModel)]="pageObject.data.password"
+            type="password"
+            placeholder="*******"
+          ></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@signup.repeatPassword">Repeat Password</legend>
+          <ion-input
+            [(ngModel)]="pageObject.data.passwordRepeat"
+            type="password"
+            placeholder="*******"
+          ></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-button
+        class="login-button"
+        (click)="register()"
+        expand="block"
+        i18n="@@signup.signUp"
+        >Sign Up</ion-button
+      >
+      <div class="devider">
+        <span class="content" i18n="@@signup.orSignupWith">Or Signup with</span>
+      </div>
+      <div class="auth-controls mb-5">
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-icon name="logo-google"></ion-icon>
+        <ion-icon name="logo-twitter"></ion-icon>
+      </div>
+      <p class="signup-text">
+        <span i18n="@@signup.amAlreadyMember">I'm already a member</span
+        >&nbsp;<a (click)="change('signin')" i18n="@@signup.signIn">Sign In?</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Forget password page -->
+  <div class="container" *ngIf="pageObject.screen == 'forget'">
+    <ion-img class="login-image" src="../../assets/login.png"></ion-img>
+    <h1 class="heading" i18n="@@forget.forgotPassword">
+      Forget Password?<br /><br />
+    </h1>
+    <p class="para" i18n="@@forget.enterEmailToReset">Enter email to reset</p>
+    <ion-item lines="none" class="ion-item">
+      <fieldset class="input-item">
+        <legend i18n="@@forget.email">Email</legend>
+        <ion-input type="email" placeholder="name@domain.com"></ion-input>
+      </fieldset>
+    </ion-item>
+    <ion-button
+      class="login-button"
+      expand="block"
+      i18n="@@forget.resetPassword"
+      >Reset Password</ion-button
+    >
+    <p class="signup-text">
+      <span i18n="@@forget.rememberdPassword">Rememberd Password</span>&nbsp;<a
+        (click)="change('signin')"
+        i18n="@@forget.signIn"
+        >Sign In?</a
+      >
+    </p>
+  </div>
+</ion-content>
+<!-- <ion-footer color="white">
+  <ion-toolbar>
+    <p class="copyright">Created with ❤️ by&nbsp;<a>Inventive</a></p>
+  </ion-toolbar>
+</ion-footer> -->

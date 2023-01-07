@@ -1,0 +1,310 @@
+<ion-content>
+  <app-page-header
+    [title]="pageObject.title"
+    [custom]="pageObject.registerStep != pageObject.initialStep"
+    icon="arrow-back-outline"
+    (onIconClick)="moveBack()"
+  ></app-page-header>
+  <div>
+    <ion-img
+      *ngIf="pageObject.registerStep == 0"
+      class="regiser-image min"
+      src="../../assets/login.png"
+    ></ion-img>
+    <!-- 0: Email -->
+    <app-panel
+      *ngIf="pageObject.registerStep == 0"
+      label="Enter email"
+      i18n-label="@@register.enterEmail"
+      description="Enter an email continue using one of the methods below"
+      i18n-description="@@register.enterEmailDesc"
+    >
+      <div class="step-container">
+        <div>
+          <app-input
+            label="Email"
+            i18n-label="@@register.email"
+            type="email"
+            [(ngModel)]="pageObject.data.userAccount.email"
+            type="email"
+            placeholder="amine@gmail.com"
+          >
+          </app-input>
+          <div class="devider">
+            <span class="content" i18n="@@register.orSignupWith"
+              >Or Signup with</span
+            >
+          </div>
+          <div class="auth-controls mb-5">
+            <ion-icon name="logo-facebook"></ion-icon>
+            <ion-icon name="logo-google"></ion-icon>
+            <ion-icon name="logo-twitter"></ion-icon>
+          </div>
+          <p class="link-text">
+            <span i18n="@@register.amAlreadyMember">I'm already a member</span
+            >&nbsp;<a i18n="@@register.signIn"
+              >Sign In?</a
+            >
+          </p>
+          <p class="link-text">
+            <span i18n="@@register.amACustomer"
+              >I'm a customer wishing to book a service</span
+            >&nbsp;<a
+              i18n="@@register.reigisterAsCustomer"
+              >Reigister as customer</a
+            >
+          </p>
+        </div>
+      </div>
+    </app-panel>
+
+    <!-- 1: Create business account -->
+    <app-panel
+      *ngIf="pageObject.registerStep == 1"
+      label="Creaete a business account"
+      i18n-label="@@register.creaeteABusinessAccount"
+      description="You're almost there! create your new account, by completing these details"
+      i18n-description="@@register.creaeteABusinessAccountDesc"
+    >
+      <div class="container">
+        <div>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend i18n="@@register.firstName">First Name</legend>
+              <ion-input
+                [(ngModel)]="pageObject.data.userAccount.firstName"
+                type="text"
+                placeholder="John"
+              ></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend i18n="@@register.lastName">Last Name</legend>
+              <ion-input
+                [(ngModel)]="pageObject.data.userAccount.lastName"
+                type="text"
+                placeholder="Doe"
+              ></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend i18n="@@register.phoneNumber">Phone Number</legend>
+              <ion-input
+                [(ngModel)]="pageObject.data.userAccount.phoneNumber"
+                type="text"
+                placeholder="0600000000"
+              ></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend i18n="@@register.password">Password</legend>
+              <ion-input
+                [(ngModel)]="pageObject.data.userAccount.password"
+                type="password"
+                placeholder="*******"
+              ></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend i18n="@@register.repeatPassword">Repeat Password</legend>
+              <ion-input
+                [(ngModel)]="pageObject.passwordRepeat"
+                type="password"
+                placeholder="*******"
+              ></ion-input>
+            </fieldset>
+          </ion-item>
+          <app-checkbox
+            [useToggle]="true"
+            [(ngModel)]="pageObject.data.userAccount.privacyPolicyAgreement"
+            i18n-label="@@register.privacyPolicy"
+            label="I agree to the privacy policy, Terms of services and Terms of business"
+          ></app-checkbox>
+        </div>
+      </div>
+    </app-panel>
+
+    <!-- 2: Verifiy your mobile number-->
+    <app-panel
+      *ngIf="pageObject.registerStep == 2"
+      label="Verify your mobile number"
+      i18n-label="@@register.verifyMobileNumber"
+      description="To Protect your account we'll send a text message witha 4-dight code to the mobile number below"
+      i18n-description="@@register.verifyMobileNumberDesc"
+    >
+      <div class="container">
+        <div>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend i18n="@@register.phoneNumber">Phone Number</legend>
+              <ion-input
+                [(ngModel)]="pageObject.data.userAccount.phoneNumber"
+                type="text"
+                placeholder="0600000000"
+              ></ion-input>
+            </fieldset>
+          </ion-item>
+        </div>
+      </div>
+    </app-panel>
+
+    <!-- 3: Enter received code-->
+    <app-panel
+      *ngIf="pageObject.registerStep == 3"
+      label="Enter received code"
+      i18n-label="@@register.enterReceivedCode"
+      description="A code has been sent to your mobile number, enter the code below"
+      i18n-description="@@register.enterReceivedCodeDesc"
+    >
+      <app-number-input
+        label="Received code"
+        i18n-label="@@register.receivedCode"
+        [(ngModel)]="pageObject.data.verificationCode"
+        [maxlength]="4"
+      ></app-number-input>
+      <div
+        class="simple-description {{
+          pageObject.codeValid ? 'valid' : 'invalid'
+        }}"
+        *ngIf="pageObject.invalidVerificationCodeMessage"
+      >
+        {{ pageObject.invalidVerificationCodeMessage }}
+      </div>
+    </app-panel>
+
+    <!-- 4: Business Name-->
+    <app-panel
+      *ngIf="pageObject.registerStep == 4"
+      label="What is your business name"
+      i18n-label="@@register.businessName"
+      description="Specify both the brand name the end users will see and the name that the business is legally registered under"
+      i18n-description="@@register.businessNameDesc"
+    >
+      <app-input
+        label="Shop Name"
+        i18n-label="@@barberShop.shopName"
+        [(ngModel)]="pageObject.data.salonProfile.name"
+      ></app-input>
+      <app-input
+        label="Business leagal name"
+        i18n-label="@@barberShop.businessLeagalName"
+        [(ngModel)]="pageObject.data.salonProfile.leagalName"
+      ></app-input>
+    </app-panel>
+
+    <!-- 5: Website and social media-->
+    <app-panel
+      *ngIf="pageObject.registerStep == 5"
+      label="Website and social media"
+      i18n-label="@@register.websiteAndSocialMedia"
+      description="Help users get to know your brand better and access your social media"
+      i18n-description="@@register.websiteAndSocialMediaDesc"
+    >
+      <app-input
+        label="Website"
+        i18n-label="@@barberShop.website"
+        [(ngModel)]="pageObject.data.salonProfile.website"
+      ></app-input>
+      <app-input
+        label="Facebook"
+        i18n-label="@@barberShop.facebook"
+        [(ngModel)]="pageObject.data.salonProfile.facebook"
+      ></app-input>
+      <app-input
+        label="Instagram"
+        i18n-label="@@barberShop.instagram"
+        [(ngModel)]="pageObject.data.salonProfile.instagram"
+      ></app-input>
+      <app-input
+        label="Twitter"
+        i18n-label="@@barberShop.twitter"
+        [(ngModel)]="pageObject.data.salonProfile.twitter"
+      ></app-input>
+    </app-panel>
+
+    <!-- 6: Choose your main business type-->
+    <app-panel
+      *ngIf="pageObject.registerStep == 6"
+      label="Choose your main business type"
+      i18n-label="@@register.businessType"
+      description="Choose your main business type"
+      i18n-description="@@register.businessTypeDesc"
+    >
+      <app-business-type
+        [(ngModel)]="pageObject.data.salonProfile.mainType"
+        [single]="true"
+        [types]="pageObject.data.salonTypes"
+        [maxSelected]="1"
+      ></app-business-type>
+    </app-panel>
+
+    <!-- 7: Choose your related business type-->
+    <app-panel
+      *ngIf="pageObject.registerStep == 7"
+      label="Choose your related business type"
+      i18n-label="@@register.relatedbusinessType"
+      description="If your business can be described by more types, choose up to 3 more"
+      i18n-description="@@register.relatedbusinessTypeDesc"
+    >
+      <app-business-type
+        [(ngModel)]="pageObject.data.salonProfile.relatedTypes"
+        [types]="pageObject.data.salonTypes"
+        [maxSelected]="3"
+      ></app-business-type>
+    </app-panel>
+
+    <!-- 8: Address-->
+    <app-panel
+      *ngIf="pageObject.registerStep == 8"
+      label="What is your address"
+      i18n-label="@@register.whatIsYourTeamAddress"
+      description="Add your business location so that your clients can easily find you"
+      i18n-description="@@register.whatIsYourTeamAddressDesc"
+    >
+      <app-input-address
+        i18n-label="@@barberShop.address"
+        label="Address"
+        [(ngModel)]="pageObject.data.salonProfile.address"
+      ></app-input-address>
+    </app-panel>
+
+    <!-- 9: How did you hear about us-->
+    <app-checkbox-list
+      *ngIf="pageObject.registerStep == 9"
+      label="How did you hear about us"
+      i18n-label="@@register.howDidYouHearAboutUs"
+      description="How did this application reached you"
+      i18n-description="@@register.howDidYouHearAboutUsDesc"
+      [(ngModel)]="pageObject.data.salonProfile.salonReach.reachType"
+    >
+      <app-checkbox
+        *ngFor="let option of pageObject.reachOptions"
+        [label]="option.label"
+        [groupValue]="option.value"
+      ></app-checkbox>
+
+      <app-textarea
+        *ngIf="pageObject.data.salonProfile.salonReach.reachType == 5"
+        label="Description"
+        i18n-label="@@global.description"
+        [(ngModel)]="pageObject.data.salonProfile.salonReach.otherDescription"
+      ></app-textarea>
+    </app-checkbox-list>
+  </div>
+</ion-content>
+<app-footer-controls
+  (onConfirm)="next()"
+  (onCnacel)="cancelProcess()"
+  [showCancel]="pageObject.showCancel && !!pageObject.cancelText"
+  [showDelete]="false"
+  okText="Continue"
+  i18n-okText="@@register.continue"
+  [okLoading]="pageObject.saving"
+  [cancelText]="pageObject.cancelText"
+>
+  <app-lang-supp></app-lang-supp
+></app-footer-controls>

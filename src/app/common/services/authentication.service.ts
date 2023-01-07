@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserProfile } from '../models/user-profile';
 import { AuthenticationSettings } from '../models/authentication-settings';
-import { AuthenticationResponse } from 'src/app/authentification/models/authentication-response';
+// import { AuthenticationResponse } from 'src/app/authentification/models/authentication-response';
 import { RefreshTokenResponse } from '../models/refresh-token-response';
 import { UserConfigUtils } from '../utils/user-config-utils';
 import { RoutesConstants } from '../constants/routes-constants';
@@ -84,7 +84,7 @@ export class AuthenticationService {
   /**
    *  @description save settings after user connected
    */
-  completeAuthentication(response: AuthenticationResponse) {
+  completeAuthentication(response: any) {
     UserConfigUtils.saveUserProfileProperties(response.profile);
     const authentication: AuthenticationSettings = {
       accessToken: response.accessToken,
