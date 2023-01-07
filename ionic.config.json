@@ -1,0 +1,7 @@
+{
+  "name": "jamil2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
