@@ -1,0 +1,9 @@
+<div class="checkbox-list-header">
+  <app-header [label]="label" [extra]="extra"></app-header>
+</div>
+<div class="checkbox-list-description" *ngIf="description">
+  {{ description }}
+</div>
+<div class="checkbox-list-content">
+  <ng-content></ng-content>
+</div>

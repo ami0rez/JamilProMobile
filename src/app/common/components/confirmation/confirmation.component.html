@@ -1,0 +1,42 @@
+<ion-content class="ion-padding">
+  <ion-modal [isOpen]="modalVisible">
+    <ng-template>
+      <ion-content [fullscreen]="true">
+        <div class="confirmation">
+          <div *ngIf="!pageObject.fullTitle" class="title">
+            <span i18n="@@global.confirmation.deleteThe">Delete the </span
+            >&nbsp;{{ pageObject.title }}
+          </div>
+          <div *ngIf="pageObject.fullTitle" class="title">
+            {{ pageObject.fullTitle }}
+          </div>
+          <div
+            *ngIf="!pageObject.fullDescription"
+            class="confirmation-description"
+          >
+            <span i18n="@@global.confirmation.areYouSureYouWant"
+              >Are you sure you want to delete this</span
+            >
+            {{ pageObject.title }}?
+            <span i18n="@@global.confirmation.actionCanBeUndon"
+              >this action cannot be undone</span
+            >.
+          </div>
+          <div
+            *ngIf="pageObject.fullDescription"
+            class="confirmation-description"
+          >
+            {{ pageObject.fullDescription }}
+          </div>
+          <app-footer-controls
+            (onCnacel)="cancel()"
+            (onConfirm)="confirm()"
+            okText="Delete"
+            i18n-okText="@@global.delete"
+            color="danger"
+          ></app-footer-controls>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

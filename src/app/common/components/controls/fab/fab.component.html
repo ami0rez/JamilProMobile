@@ -1,0 +1,10 @@
+<ion-fab [slot]="slot" [vertical]="vertical" [horizontal]="horizontal">
+  <ion-fab-button>
+    <ion-icon [name]="icon"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list *ngFor="let item of items" side="top">
+    <ion-fab-button (click)="handleItemClick(item)" class="text-item">
+      <ion-icon [name]="item.icon"></ion-icon><span>{{ item.label }}</span>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>

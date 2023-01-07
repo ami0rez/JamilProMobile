@@ -1,0 +1,9 @@
+<div class="panel-header">
+  <app-header [label]="label" [extra]="extra"></app-header>
+</div>
+<div class="panel-description" *ngIf="description" class="panel-description">
+  {{ description }}
+</div>
+<div class="panel-content">
+  <ng-content></ng-content>
+</div>

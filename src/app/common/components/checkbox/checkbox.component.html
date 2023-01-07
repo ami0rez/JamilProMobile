@@ -1,0 +1,23 @@
+<ion-list lines="none">
+  <div class="checkbox-container">
+    <ion-checkbox
+      *ngIf="!useToggle"
+      [(ngModel)]="inputValue"
+      [checked]="checked"
+      [color]="color"
+      [disabled]="disabled"
+      [indeterminate]="indeterminate"
+      (ionChange)="handleValueChange()"
+    ></ion-checkbox>
+    <ion-toggle
+      *ngIf="useToggle"
+      [(ngModel)]="inputValue"
+      [checked]="checked"
+      [color]="color"
+      [disabled]="disabled"
+      [enableOnOffLabels]="enableOnOffLabels"
+      (ionChange)="handleValueChange()"
+    ></ion-toggle>
+    <ion-label *ngIf="showLabel">{{ label }}</ion-label>
+  </div>
+</ion-list>

@@ -1,0 +1,86 @@
+<ion-item *ngIf="showModalData" lines="none" class="ion-item">
+  <fieldset id="open-modal-{{ id }}" class="input-item address-input">
+    <legend *ngIf="showLabel">{{ label }}</legend>
+    <div expand="block" class="fake-input">
+      {{ address?.designation }}
+    </div>
+  </fieldset>
+</ion-item>
+<ion-content class="ion-padding">
+  <ion-modal
+    [isOpen]="isModalOpen"
+    trigger="open-modal-{{ id }}"
+    (didPresent)="isModalOpen = true"
+    (didDismiss)="isModalOpen = false"
+  >
+    <ng-template>
+      <ion-content>
+        <div class="service-body">
+          <app-page-header
+            (onIconClick)="cancel()"
+            [custom]="true"
+            title="Address"
+          ></app-page-header>
+          <div>
+            <app-input
+              label="Designation"
+              i18n-label="@@global.address.designation"
+              [(ngModel)]="address.designation"
+            ></app-input>
+            <!-- <div id="map_canvas">
+              <button ion-button (click)="onButtonClick($event)">Start Demo</button>
+            </div> -->
+            <app-input
+              label="Appt/Suite, etc"
+              i18n-label="@@global.address.apptSuit"
+              [(ngModel)]="address.appt"
+              (change)="handleAddressChange()"
+            ></app-input>
+            <app-input
+              label="District"
+              i18n-label="@@global.address.district"
+              [(ngModel)]="address.sector"
+              (change)="handleAddressChange()"
+            ></app-input>
+            <app-input
+              label="City"
+              i18n-label="@@global.address.city"
+              [(ngModel)]="address.city"
+              (change)="handleAddressChange()"
+            ></app-input>
+            <app-input
+              label="Region"
+              i18n-label="@@global.address.region"
+              [(ngModel)]="address.region"
+              (change)="handleAddressChange()"
+            ></app-input>
+            <app-input
+              label="PosteCode"
+              i18n-label="@@global.address.posteCode"
+              [(ngModel)]="address.postalCode"
+              (change)="handleAddressChange()"
+            ></app-input>
+            <app-input
+              label="Country"
+              i18n-label="@@global.address.country"
+              [(ngModel)]="address.country"
+              (change)="handleAddressChange()"
+            ></app-input>
+            <app-textarea
+              label="Directions"
+              i18n-label="@@global.address.directions"
+              [(ngModel)]="address.directions"
+              (change)="handleAddressChange()"
+            ></app-textarea>
+          </div>
+        </div>
+      </ion-content>
+      <app-footer-controls
+        (onConfirm)="cancel()"
+        [showCancel]="false"
+        okText="Save"
+        i18n-okText="@@global.save"
+      ></app-footer-controls>
+    </ng-template>
+  </ion-modal>
+</ion-content>

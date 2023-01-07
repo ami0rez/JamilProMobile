@@ -1,0 +1,10 @@
+<div class="profile-image">
+  <ion-avatar>
+    <img alt="Profile Image" [src]="displayedImage" (error)="onImageDisplayError()" />
+    <ion-icon
+      (click)="pickImage()"
+      class="profile-image-picker"
+      name="camera-outline"
+    ></ion-icon>
+  </ion-avatar>
+  </div> 

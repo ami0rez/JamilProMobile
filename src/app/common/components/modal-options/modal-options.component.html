@@ -1,0 +1,75 @@
+<ion-item *ngIf="showModalData" lines="none" class="ion-item">
+  <fieldset  class="input-item">
+    <legend *ngIf="showLabel">{{ label }}</legend>
+    <div
+      *ngIf="maxItems > 1"
+      id="open-modal-{{ id }}"
+      expand="block"
+      class="fake-input"
+    >
+      <ion-chip *ngFor="let item of selectedItems">{{ item.label }}</ion-chip>
+    </div>
+    <div
+      *ngIf="maxItems == 1"
+      id="open-modal-{{ id }}"
+      expand="block"
+      class="fake-input"
+    >
+      <ion-label>{{
+        selectedItems.length ? selectedItems[0]?.label : ""
+      }}</ion-label>
+    </div>
+  </fieldset>
+</ion-item>
+<ion-content class="ion-padding">
+  <ion-modal
+    [isOpen]="isModalOpen"
+    trigger="open-modal-{{ id }}"
+    (didPresent)="isModalOpen = true"
+    (didDismiss)="isModalOpen = false"
+  >
+    <ng-template>
+      <ion-content [fullscreen]="true">
+        <div class="profile-header">
+          <ion-icon name="close-outline" (click)="cancel()"></ion-icon>
+          <span class="profile-header-title">{{ title ?? label }}</span>
+        </div>
+        <div class="profile-body">
+          <ion-searchbar
+            *ngIf="false"
+            placeholder="Search by treatment name"
+          ></ion-searchbar>
+          <div>
+            <ion-list *ngFor="let item of formattedOptions">
+              <ion-list-header *ngIf="showListHeaders" ion-list-header>
+                <ion-label>{{ item.name }}</ion-label>
+              </ion-list-header>
+              <ion-item *ngFor="let treatment of item.options">
+                <ion-checkbox
+                  [disabled]="!treatment.selected && disableCheckBoxes"
+                  [(ngModel)]="treatment.selected"
+                  (ionChange)="checkBoxChnage(treatment)"
+                  slot="start"
+                ></ion-checkbox>
+                <ion-label>{{ treatment.label }}</ion-label>
+              </ion-item>
+            </ion-list>
+          </div>
+        </div>
+      </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <ion-title>
+            <app-footer-controls
+              (onConfirm)="cancel()"
+              [showCancel]="false"
+              okText="Save"
+              i18n-okText="@@global.save"
+              [showDelete]="false"
+            ></app-footer-controls>
+          </ion-title>
+        </ion-toolbar>
+      </ion-footer>
+    </ng-template>
+  </ion-modal>
+</ion-content>

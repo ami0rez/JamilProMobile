@@ -1,0 +1,21 @@
+<ion-item>
+  <ion-label [class]="disabled ? 'disabled-text' : ''" (click)="presentPopover($event)" *ngIf="!value">{{label}}
+  </ion-label>
+  <div (click)="presentPopover($event)" *ngIf="value" lines="none" class="salon-value">
+    <legend  class="salon-value-legend">{{label}}</legend>
+    <ion-label>{{value | date: labelDateFormat}}</ion-label>
+  </div>
+  <ion-popover #popover [isOpen]="isOpen" (didDismiss)="cancel()">
+    <ng-template>
+      <ion-datetime (ionChange)="onDateSelect($event)" [presentation]="presentation" [(ngModel)]="value"
+        PositionAlign="center" locale="sl-SI">
+      </ion-datetime>
+      <div class="page-editor-controls">
+        <div class="first-controls">
+          <ion-button fill="clear" i18n="@@global.cancel" (click)="cancel()">Cancel</ion-button>
+        </div>
+        <ion-button class="save-button" (click)="selectDate()" i18n="@@global.select">Select</ion-button>
+      </div>
+    </ng-template>
+  </ion-popover>
+</ion-item>

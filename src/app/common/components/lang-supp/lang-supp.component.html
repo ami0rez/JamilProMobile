@@ -1,0 +1,22 @@
+<div class="starter-story-control-settings">
+  <span (click)="changeLanguage()">
+    <ion-icon name="language-outline"></ion-icon>
+    <span i18n="@@global.currentLanguage">English</span>
+  </span>
+  <span>
+    <ion-icon name="help-buoy-outline"></ion-icon
+    ><span i18n="@@starter.support">Support</span>
+  </span>
+</div>
+<app-modal-options
+  [showModalData]="false"
+  id="language"
+  label="Languages"
+  [(ngModel)]="userConfig.language"
+  (onValueChanged)="onLanguageChange()"
+  [options]="languageOptions"
+  [single]="true"
+  [maxItems]="1"
+  [showListHeaders]="false"
+  title="Language"
+></app-modal-options>

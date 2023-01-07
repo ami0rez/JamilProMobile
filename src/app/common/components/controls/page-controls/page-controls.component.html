@@ -1,0 +1,27 @@
+<div class="page-editor-controls">
+  <div class="first-controls">
+    <ion-button
+      *ngIf="showCancel"
+      fill="clear"
+      i18n="@@global.cancel"
+      (click)="handleCancel()"
+      >Cancel</ion-button
+    >
+    <ion-button
+      *ngIf="showDelete"
+      class="save-button"
+      fill="outline"
+      color="danger"
+      (click)="handleDelete()"
+      i18n="@@global.delete"
+      >Delete</ion-button
+    >
+  </div>
+  <ion-button
+    *ngIf="showSave"
+    class="save-button"
+    (click)="handleSave()"
+    i18n="@@global.save"
+    >Save</ion-button
+  >
+</div>

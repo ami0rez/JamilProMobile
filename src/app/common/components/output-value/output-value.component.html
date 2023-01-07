@@ -1,0 +1,12 @@
+<div class="output-header">
+  <legend *ngIf="showLabel">
+    {{ label }}
+  </legend>
+  <div *ngIf="extra" class="output-extra">
+    {{ extra }}
+  </div>
+</div>
+<div *ngIf="outputValue || outputValue == 0" class="output-content">
+  {{ outputValue }}
+  <div *ngIf="suffix" class="output-suffix">{{ suffix }}</div>
+</div>

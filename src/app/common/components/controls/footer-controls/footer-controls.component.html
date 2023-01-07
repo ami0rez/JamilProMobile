@@ -1,0 +1,29 @@
+<div>
+  <ng-content></ng-content>
+  <div class="footer">
+    <div
+      *ngIf="showDelete"
+      class="confirmation-button  {{ deleteColor }} {{
+        disableDelete ? 'disabled' : ''
+      }}"
+      (click)="delete()"
+    >
+      {{ deleteText }}
+    </div>
+    <div
+      *ngIf="showCancel"
+      class="confirmation-button  {{ cancelColor }}"
+      (click)="cancel()"
+    >
+      {{ cancelText }}
+    </div>
+    <div
+      *ngIf="showOk"
+      class="confirmation-button {{ okColor }}"
+      (click)="confirm()"
+    >
+      <span>{{ okText }}</span>
+      <ion-spinner *ngIf="okLoading" name="circular"></ion-spinner>
+    </div>
+  </div>
+</div>

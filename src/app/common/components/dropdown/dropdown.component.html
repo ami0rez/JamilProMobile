@@ -1,0 +1,26 @@
+<ion-item lines="none" class="ion-item">
+  <fieldset class="input-item dropdown">
+    <legend>{{ label }}</legend>
+    <ion-list class="input-content">
+      <ion-item>
+        <ion-select
+          [(ngModel)]="inputValue"
+          [placeholder]="placeholder"
+          [cancelText]="cancelText"
+          [okText]="okText"
+          [disabled]="disabled"
+          [interface]="interface"
+          [interfaceOptions]="interfaceOptions"
+          [multiple]="multiple"
+          (ionChange)="handleValueChange()"
+        >
+          <ion-select-option
+            *ngFor="let item of options"
+            [value]="item.value"
+            >{{ item.label }}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </fieldset>
+</ion-item>

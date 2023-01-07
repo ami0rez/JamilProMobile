@@ -1,0 +1,9 @@
+<div
+  class="separator {{ dashed ? 'dashed' : 'simple' }}"
+  [ngStyle]="{
+    height: borderHeight + 'px',
+    background: dashed ? '' : color,
+    margin: horizentalSpacing + 'px ' + verticalSpacing + 'px',
+    width: innerWidth - verticalSpacing * 2
+  }"
+></div>

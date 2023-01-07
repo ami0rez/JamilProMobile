@@ -1,0 +1,5 @@
+<div class="profile-header">
+  <ion-icon *ngIf="custom" [name]="icon" (click)="handleClickIcon()"></ion-icon>
+  <ion-back-button *ngIf="showBackIcon && !custom" ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+  <span class="profile-header-title">{{title}}</span>
+</div>

@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'jamil2',
+  appId: 'com.inventive.jamil',
+  appName: 'Jamil',
   webDir: 'www',
   bundledWebRuntime: false
 };

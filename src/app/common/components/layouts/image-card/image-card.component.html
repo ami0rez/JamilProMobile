@@ -1,0 +1,13 @@
+<div *ngIf="image" (click)="navigate()" class="card-image">
+  <ion-avatar>
+    <img alt="Profile Image" [src]="image" (error)="image = defaultImage" />
+  </ion-avatar>
+</div>
+<div *ngIf="title" (click)="navigate()" class="card-data">
+  <div *ngIf="title" class="card-data-title">
+    {{ title }}
+  </div>
+  <div *ngIf="description" class="card-data-description">
+    {{ description }}
+  </div>
+</div>

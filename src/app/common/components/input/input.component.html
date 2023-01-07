@@ -1,0 +1,24 @@
+<ion-item lines="none" class="ion-item">
+  <fieldset class="input-item">
+    <legend *ngIf="showLabel">
+      {{ label }}
+    </legend>
+    <div class="input-content">
+      <ion-input
+        [(ngModel)]="value"
+        [type]="type"
+        [autocapitalize]="autocapitalize"
+        [clearInput]="clearInput"
+        [inputmode]="inputmode"
+        [max]="max"
+        [maxlength]="maxlength"
+        [min]="min"
+        [minlength]="minlength"
+        [placeholder]="placeholder"
+        [readonly]="readonly"
+        [required]="required"
+      ></ion-input>
+      <div *ngIf="suffix" class="input-suffix">{{suffix}}</div>
+    </div>
+  </fieldset>
+</ion-item>

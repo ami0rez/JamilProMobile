@@ -1,0 +1,12 @@
+<div class="tabs-header">
+  <div
+    *ngFor="let tab of tabs; let index as i"
+    (click)="selectTab(tab, i)"
+    class="tabs-item {{ tab.active ? 'selected' : '' }}"
+  >
+    {{ tab.legend }}
+  </div>
+</div>
+<div class="tabs-content">
+  <ng-content></ng-content>
+</div>
