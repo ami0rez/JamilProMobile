@@ -12,9 +12,10 @@ import { AppComponent } from './app.component';
 import { InvCommonModule } from './common/common.module';
 import { CustomHttpInterceptor } from './common/services/custom-http-interceptor.service';
 import { AppConfigService } from './common/services/app-config-service';
+import { AuthComponentComponent } from './authentification/components/auth-component/auth-component.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AuthComponentComponent],
   imports: [
     BrowserModule,
     FormsModule,

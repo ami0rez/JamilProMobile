@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 import { RoutesConstants } from 'src/app/common/constants/routes-constants';
 import { AuthenticationService } from 'src/app/common/services/authentication.service';
 import { NotificationService } from 'src/app/common/services/notification.service';
@@ -38,8 +39,8 @@ export class LoginManagerService {
     if (!(await this.validateLogin(query))) {
       return;
     }
-    var result = await this.loginService.login(query).toPromise();
-    this.manageLoginSuccess(pageObject, result);
+    var result = await lastValueFrom(this.loginService.login(query));
+    await this.manageLoginSuccess(pageObject, result);
   }
   
   /*
@@ -62,7 +63,7 @@ export class LoginManagerService {
     pageObject: LoginPage,
     response: AuthenticationResponse
   ) {
-    this.authenticationService.completeAuthentication(response);
+    await this.authenticationService.completeAuthentication(response);
     if (!response.profile.emailConfirmed) {
       await this.notificationService.showWarning(
         $localize`:@@login.verifyAcount:Please verify your account`

@@ -1,16 +1,47 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
+import { AuthComponentComponent } from './authentification/components/auth-component/auth-component.component';
+
 import { AuthGuard } from './common/auth.guard';
+import { ToHomeGuard } from './common/to-home.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'starter',
+    loadChildren: () =>
+      import('./starter/starter.module').then((m) => m.StarterModule),
   },
   {
-    path: '',
-    redirectTo: 'auth/login',
-    pathMatch: 'full'
+    path: 'settings',
+    loadChildren: () =>
+      import('./settings/settings.module').then((m) => m.SettingsModule),
+  },
+  {
+    path: 'appointments',
+    loadChildren: () =>
+      import('./appointments/appointments.module').then(
+        (m) => m.AppointmentsModule
+      ),
+  },
+  {
+    path: 'notifications',
+    loadChildren: () =>
+      import('./notifications/notifications.module').then(
+        (m) => m.NotificationsModule
+      ),
+  },
+  {
+    path: 'services',
+    loadChildren: () =>
+      import('./services/services.module').then((m) => m.ServicesModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'payments',
+    loadChildren: () =>
+      import('./payments/payments.module').then((m) => m.PaymentsModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'auth',
@@ -19,12 +50,22 @@ const routes: Routes = [
         (m) => m.AuthentificationModule
       ),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'login',
+    component: AuthComponentComponent,
+    canActivate: [ToHomeGuard],
+  },
 ];
-
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

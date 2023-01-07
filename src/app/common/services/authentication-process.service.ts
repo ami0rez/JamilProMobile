@@ -21,6 +21,7 @@ export class AuthenticationProcessService {
   public isPhoneNumberConfirmed(): boolean {
     if (this.authenticationService.accessTokenValid()) {
       const user = this.authenticationService.userProfile;
+      console.debug(JSON.stringify(user));
       if (user) {
         return user.phoneNumberConfirmed;
       }

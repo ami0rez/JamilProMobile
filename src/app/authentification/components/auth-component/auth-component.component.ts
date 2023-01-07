@@ -1,3 +1,4 @@
+import { UserConfigUtils } from 'src/app/common/utils/user-config-utils';
 import { PageBase } from 'src/app/common/models/page-base';
 // import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { Component, OnInit } from '@angular/core';
@@ -22,8 +23,8 @@ export class AuthComponentComponent extends PageBase implements OnInit {
     super();
   }
 
-  ngOnInit() {
-    if(!this.userConfig?.visitedStarter){
+  async ngOnInit() {
+    if(!(await UserConfigUtils.getUserConfig())?.visitedStarter){
       this.loginManagerService.redirectToStarter();
     }
   }

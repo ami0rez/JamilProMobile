@@ -1,4 +1,3 @@
-import { AuthComponentComponent } from './components/auth-component/auth-component.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +11,7 @@ import { BusinessTypeComponent } from './register/components/business-type/busin
 import { RegisterComponent } from './register/components/register/register.component';
 
 @NgModule({
-  declarations: [RegisterComponent, BusinessTypeComponent, AuthComponentComponent],
+  declarations: [RegisterComponent, BusinessTypeComponent],
   imports: [
     IonicModule,
     CommonModule,

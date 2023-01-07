@@ -1,3 +1,4 @@
+import { UserConfigUtils } from 'src/app/common/utils/user-config-utils';
 import { Component, OnInit } from '@angular/core';
 
 import { PageBase } from 'src/app/common/models/page-base';
@@ -22,16 +23,23 @@ export class RegisterComponent extends PageBase implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.registerProcessManagerService.refreshPageTitle(this.pageObject);
     if (
       this.pageObject.registerStep == UserRegisterSteps.Email ||
       this.pageObject.registerStep == UserRegisterSteps.PhoneNumberCheck
     ) {
-      this.loadUserAccount();
+      await this.loadUserAccount();
     }
     this.registerProcessManagerService.prepareCurrentStep(this.pageObject);
     this.registerProcessManagerService.refreshUserRegisrterState(this.pageObject);
+  }
+
+  /*
+   *  @description Move back
+   */
+  gotoLogin() {
+    this.registerManagerService.gotoLogin();
   }
 
   /*
@@ -58,19 +66,23 @@ export class RegisterComponent extends PageBase implements OnInit {
   /*
    *  @description Load user email
    */
-  loadUserAccount() {
-    this.pageObject.data.userAccount.email = this.userConfig.profile?.email;
+  async loadUserAccount() {
+    if(this.userConfig){
+      this.userConfig = await UserConfigUtils.getUserConfig();
+    }
+    
+    this.pageObject.data.userAccount.email = this.userConfig?.profile?.email;
     this.pageObject.data.userAccount.firstName =
-      this.userConfig.profile.firstName;
+      this.userConfig?.profile.firstName;
     this.pageObject.data.userAccount.lastName =
-      this.userConfig.profile.lastName;
+      this.userConfig?.profile.lastName;
     this.pageObject.data.userAccount.phoneNumber =
-      this.userConfig.profile.phoneNumber;
+      this.userConfig?.profile.phoneNumber;
     this.pageObject.data.userAccount.privacyPolicyAgreement =
-      this.userConfig.profile.privacyPolicyAgreement;
+      this.userConfig?.profile.privacyPolicyAgreement;
     this.pageObject.registerStep =
-      this.userConfig.profile.accountCreationCurrentStep ?? 0;
+      this.userConfig?.profile.accountCreationCurrentStep ?? 0;
     this.pageObject.initialStep =
-      this.userConfig.profile.accountCreationInitStep ?? 0;
+      this.userConfig?.profile.accountCreationInitStep ?? 0;
   }
 }

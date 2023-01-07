@@ -52,4 +52,15 @@ export class RegisterManagerService {
     userConfig.profile.accountCreationCurrentStep = pageObject.registerStep;
     await UserConfigUtils.saveUserConfig(userConfig);
   }
+
+  
+
+  /*
+   *  @description Goto login
+   */
+  gotoLogin() {
+    console.log('going to login');
+    
+    this.router.navigate([RoutesConstants.login]);
+  }
 }

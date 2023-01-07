@@ -11,7 +11,7 @@ export class ErrorService {
     private errorMessagesService: ErrorMessagesService
   ) {}
   lifeTime = Constants.notificationLifeTime;
-  position: 'top' | 'middle' | 'bottom' = 'bottom';
+  position: 'top' | 'middle' | 'bottom' = 'top';
   async showErrors(data) {
     const toast = await this.toastController.create({
       message: `${data.reason}`,

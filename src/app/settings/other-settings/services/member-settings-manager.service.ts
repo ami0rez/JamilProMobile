@@ -34,9 +34,9 @@ export class MemberSettingsManagerService {
    *  @description Update language
    */
   async updateLanguage(pageObject: OtherSettingsPage) {
-    await this.membrsService
-      .updateLanguage(pageObject.data.settings.language)
-      .toPromise();
+    // await this.membrsService
+    //   .updateLanguage(pageObject.data.settings?.language)
+    //   .toPromise();
     this.notificationService.showSaveSuccess();
   }
 }

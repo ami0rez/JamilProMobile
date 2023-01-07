@@ -1,3 +1,4 @@
+import { StorageUtils } from './../utils/storage-utils';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -52,13 +53,10 @@ export class AuthenticationService {
   }
 
   /**
-   *  @description Get Access Token
+   *  @description Get authentication settings
    */
-  public static getAccessToken(): string {
-    const jsonSettings = localStorage.getItem('auth-settings');
-    const authSettings = JSON.parse(jsonSettings);
-    const token = authSettings?.accessToken;
-    return token;
+  public async loadAuthenticationSettings() {
+    this.authSettings = await StorageUtils.getItem(this.authenticationSettingsKey);
   }
 
   /**
@@ -87,30 +85,31 @@ export class AuthenticationService {
   /**
    *  @description save settings after user connected
    */
-  completeAuthentication(response: any) {
-    UserConfigUtils.saveUserProfileProperties(response.profile);
+  async completeAuthentication(response: any) {
+    await UserConfigUtils.saveUserProfileProperties(response.profile);
     const authentication: AuthenticationSettings = {
       accessToken: response.accessToken,
       accessTokenType: response.accessTokenType,
       refreshToken: response.refreshToken,
     };
-    localStorage.setItem(
+    await StorageUtils.setItem(
       this.authenticationSettingsKey,
       JSON.stringify(authentication)
     );
+    this.authSettings = authentication;
     this.sendAuthenticatedNotification(response.profile);
     this.redirectToHome();
   }
   /**
    *  @description save new access token and refresh token after token is refreshed
    */
-  completeSilentRenew(response: RefreshTokenResponse) {
+  async completeSilentRenew(response: RefreshTokenResponse) {
     const authentication: AuthenticationSettings = {
       ...this.authenticationSettings,
       accessToken: response.accessToken,
       refreshToken: response.refreshToken,
     };
-    localStorage.setItem(
+    await StorageUtils.setItem(
       this.authenticationSettingsKey,
       JSON.stringify(authentication)
     );
@@ -119,9 +118,9 @@ export class AuthenticationService {
   /**
    *  @description start authenticating
    */
-  startAuthentication() {
+  async startAuthentication() {
     UserConfigUtils.removeUserProfile();
-    localStorage.removeItem(this.authenticationSettingsKey);
+    await StorageUtils.removeItem(this.authenticationSettingsKey);
     this.user = null;
     this.authSettings = null;
     this.sendAuthenticatedNotification(null);
@@ -139,7 +138,7 @@ export class AuthenticationService {
    *  @description logout
    */
   public logout() {
-    localStorage.removeItem(this.authenticationSettingsKey);
+    StorageUtils.removeItem(this.authenticationSettingsKey);
     UserConfigUtils.initUserConfig();
     this.user = null;
     this.authSettings = null;

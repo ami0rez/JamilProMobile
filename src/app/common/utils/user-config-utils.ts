@@ -12,7 +12,7 @@ export class UserConfigUtils {
   private static getInitUserConfig(): UserConfig {
     return {
       language: 'en',
-      visitedStarter: false,
+      visitedStarter: true,
       profile: new UserProfile(),
       salonProfile: new SalonProfile(),
     };
@@ -21,10 +21,10 @@ export class UserConfigUtils {
    *  @description Init user config
    */
   public static async initUserConfig(): Promise<UserConfig> {
-    var oldConfig = await this.getUserConfig();
+    // var oldConfig = await this.getUserConfig();
     const config = this.getInitUserConfig();
-    config.language = oldConfig.language;
-    config.visitedStarter = oldConfig.visitedStarter;
+    //config.language = oldConfig?.language ?? config.language;
+    // config.visitedStarter = oldConfig.visitedStarter;
     this.saveUserConfig(config);
     return config;
   }
@@ -73,7 +73,7 @@ export class UserConfigUtils {
    */
   static async saveUserProfileProperties(profile: UserProfile) {
     const userConfig = await UserConfigUtils.getUserConfig();
-    userConfig.profile = {...userConfig.profile, ...profile};
+    userConfig.profile = { ...userConfig.profile, ...profile };
     await UserConfigUtils.saveUserConfig(userConfig);
   }
 

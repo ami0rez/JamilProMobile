@@ -7,15 +7,15 @@ import { AuthenticationProcessService } from '../services/authentication-process
 export class PhoneNUmberValidGuard implements CanActivate {
   constructor(
     private authenticationProcessService: AuthenticationProcessService,
-    private router: Router
   ) {}
 
   async canActivate() {
-    if (this.authenticationProcessService.isPhoneNumberConfirmed()) {
-      return true;
-    } else {
-      this.authenticationProcessService.validatePhoneNumber();
-      return false;
-    }
+    // if (this.authenticationProcessService.isPhoneNumberConfirmed()) {
+    //   return true;
+    // } else {
+    //   this.authenticationProcessService.validatePhoneNumber();
+    //   return false;
+    // }
+    return true;
   }
 }
