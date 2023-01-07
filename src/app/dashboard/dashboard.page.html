@@ -1,0 +1,28 @@
+<ion-content class="home-page" [fullscreen]="true">
+  <app-user-profile></app-user-profile>
+  <div *ngIf="false">
+    <ion-searchbar
+      show-clear-button="always"
+      placeholder="Search location or barber"
+    ></ion-searchbar>
+    <app-best-deals></app-best-deals>
+    <app-upcoming-appointments></app-upcoming-appointments>
+    <app-service-explorer></app-service-explorer>
+    <app-popular-salons></app-popular-salons>
+  </div>
+  <div *ngIf="true">
+    <app-barber-balance
+      [onlyDisplayFor]="[roles.Owner]"
+      (click)="viewBalance()"
+    ></app-barber-balance>
+    <app-barber-profile
+      [onlyDisplayFor]="[roles.Owner]"
+      [advance]="pageObject.data.advance"
+      (completeProfile)="completeProfile()"
+    ></app-barber-profile>
+    <app-todays-appointment
+      [appointments]="pageObject.data.appointments"
+      (infinitScroll)="onIonInfinite($event)"
+    ></app-todays-appointment>
+  </div>
+</ion-content>

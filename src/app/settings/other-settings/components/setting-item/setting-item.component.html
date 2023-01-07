@@ -1,0 +1,37 @@
+<div (click)="navigate()" class="setting-icon">
+  <ion-icon [name]="icon"></ion-icon>
+</div>
+<div (click)="navigate()" class="profile-data">
+  <div class="profile-data-salon-name">
+    {{ title }}
+  </div>
+  <div class="profile-data-salon-email">
+    {{ description }}
+  </div>
+</div>
+<div
+  *ngIf="useSwitch"
+  (click)="handleCheckClick($event)"
+  class="settings-switch"
+>
+  <div class="bank-default-toggle">
+    <ion-toggle
+      [(ngModel)]="value"
+      (ionChange)="handleCheckChange()"
+    ></ion-toggle>
+  </div>
+</div>
+
+<app-modal-options
+  *ngIf="useModal"
+  [showModalData]="false"
+  id="settings-item-{{ title }}"
+  [label]="title"
+  [(ngModel)]="value"
+  (onValueChanged)="handleValueChanged()"
+  [options]="options"
+  [single]="single"
+  [maxItems]="1"
+  [showListHeaders]="false"
+  [title]="title"
+></app-modal-options>

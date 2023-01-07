@@ -1,0 +1,14 @@
+<div class="popular-salons">
+  <div class="simple-title">Popular Salons</div>
+  <ion-slides #slider pager="true" [options]="slideOpts" (ionSlideDidChange)='ionSlideDidChange()'>
+    <ion-slide>
+      <app-slide-salon></app-slide-salon>
+    </ion-slide>
+    <ion-slide>
+      <app-slide-salon></app-slide-salon>
+    </ion-slide>
+    <ion-slide>
+      <app-slide-salon></app-slide-salon>
+    </ion-slide>
+  </ion-slides>
+</div>

@@ -17,19 +17,13 @@ export class AuthComponentComponent extends PageBase implements OnInit {
   constructor(
     private loginManagerService: LoginManagerService,
     private notificationService: NotificationService,
-    // private googlePlus: GooglePlus,
     private httpRequestsService: HttpRequestsService
   ) {
     super();
-    // GoogleAuth.initialize({
-    //   clientId: '772374373898-qkfngn17t3tj3b314up142oqkv96bpic.apps.googleusercontent.com',
-    //   scopes: ['profile', 'email'],
-    //   grantOfflineAccess: true,
-    // });
   }
 
   ngOnInit() {
-    if(!this.userConfig.visitedStarter){
+    if(!this.userConfig?.visitedStarter){
       this.loginManagerService.redirectToStarter();
     }
   }

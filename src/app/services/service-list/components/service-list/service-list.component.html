@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true">
+  <div class="profile-header">
+    <ion-icon name="arrow-back-outline" (click)="goBack()"></ion-icon>
+    <span class="profile-header-title" i18n="@@barberSettings.services"
+      >Services</span
+    >
+  </div>
+  <app-service-item
+    *ngFor="let item of pageObject.data.categories"
+    [item]="item"
+    (onEdit)="editCategory(item)"
+    (onDelete)="deleteCategory(item)"
+    (onCreateService)="createService(item)"
+    (onEditService)="editService(item, $event)"
+  ></app-service-item>
+</ion-content>
+<ion-fab
+  [onlyDisplayFor]="[roles.Owner]"
+  slot="fixed"
+  vertical="bottom"
+  horizontal="end"
+>
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top" (click)="navigate(routes.salonServicePackageAdd)">
+    <ion-fab-button class="text-item">
+      <ion-icon name="code"></ion-icon><span> Ajouter Package</span>
+    </ion-fab-button>
+    <ion-fab-button
+      class="text-item"
+      (click)="navigate(routes.salonServiceCategory)"
+    >
+      <ion-icon name="duplicate"></ion-icon><span>Ajouter Categorie</span>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>

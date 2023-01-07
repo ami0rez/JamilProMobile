@@ -1,0 +1,47 @@
+<div class="simple-title" i18n="@@todays-appointment.todaySAppointments">
+  Today's appointments
+</div>
+<div
+  class="appointment-item"
+  *ngFor="let appointment of appointments"
+  (click)="editAppointment(appointment)"
+>
+  <div class="appointment-item-content">
+    <ion-img [src]="appointment.image"></ion-img>
+    <div class="appointment-item-data">
+      <div class="appointment-user-name">{{ appointment.userName }}</div>
+      <div class="appointment-total-service">
+        <span i18n="@@appointment-item.totlaService">Total Services</span>:
+        {{ appointment.serviceCount }}
+      </div>
+    </div>
+    <div class="appointment-price">
+      <div class="appointment-price-currency">MAD</div>
+      <div class="appointment-price-amount">{{ appointment.totalPrice }}</div>
+    </div>
+  </div>
+
+  <div class="appointment-date">
+    <div>
+      <ion-icon name="calendar-outline"></ion-icon>
+      <div class="appointment-day">
+        {{ appointment.date | date : "EEE, d MMM" }}
+      </div>
+    </div>
+    <div>
+      <ion-icon name="time-outline"></ion-icon>
+      <div class="appointment-time">
+        {{ appointment.startTime | date : "h a" }}-
+        {{ appointment.endTime | date : "h a" }}
+      </div>
+    </div>
+    <div>
+      <div class="appointment-duration">{{ appointment.duration }} min</div>
+    </div>
+  </div>
+</div>
+<ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="dots"
+  ></ion-infinite-scroll-content>
+</ion-infinite-scroll>

@@ -1,0 +1,18 @@
+<div class="upcomming-appointments">
+  <div class="simple-title">
+    <span class="simple-title-text">Upcoming appointments</span>
+    <span class="simple-title-all">View
+      all</span>
+  </div>
+  <ion-slides #slider [options]="slideOpts" (ionSlideDidChange)='ionSlideDidChange()'>
+    <ion-slide>
+      <app-slide-apointment></app-slide-apointment>
+    </ion-slide>
+    <ion-slide>
+      <app-slide-apointment></app-slide-apointment>
+    </ion-slide>
+    <ion-slide>
+      <app-slide-apointment></app-slide-apointment>
+    </ion-slide>
+  </ion-slides>
+</div>

@@ -1,0 +1,19 @@
+<ion-content>
+  <div class="service-body">
+    <app-page-header i18n-title="@@team.team" title="Team"></app-page-header>
+    <ion-list [onlyEditFor]="[roles.Owner]">
+      <ion-item
+        (click)="editMember(member)"
+        *ngFor="let member of pageObject.data.memberList"
+      >
+        <app-image-card
+          [image]="member.image"
+          [defaultImage]="pageObject.defaultAvatar"
+          [title]="member.lastName + ' ' + member.firstName"
+          description=""
+        ></app-image-card>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+<app-fab [onlyDisplayFor]="[roles.Owner]" [items]="pageObject.controls"></app-fab>

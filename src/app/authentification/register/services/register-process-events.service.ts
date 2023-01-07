@@ -47,20 +47,20 @@ export class RegisterProcessEventsService {
   /*
    *  @description Save user email
    */
-  saveUserEmail(pageObject: RegisterPage) {
-    const userConfig = UserConfigUtils.getUserConfig();
+  async saveUserEmail(pageObject: RegisterPage) {
+    const userConfig = await UserConfigUtils.getUserConfig();
     if (!userConfig.profile) {
       userConfig.profile = new UserProfile();
     }
     userConfig.profile.email = pageObject.data.userAccount.email;
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 
   /*
    *  @description Save user account
    */
-  saveUserAccount(pageObject: RegisterPage) {
-    const userConfig = UserConfigUtils.getUserConfig();
+  async saveUserAccount(pageObject: RegisterPage) {
+    const userConfig = await UserConfigUtils.getUserConfig();
     if (!userConfig.profile) {
       userConfig.profile = new UserProfile();
     }
@@ -69,7 +69,7 @@ export class RegisterProcessEventsService {
     userConfig.profile.phoneNumber = pageObject.data.userAccount.phoneNumber;
     userConfig.profile.privacyPolicyAgreement =
       pageObject.data.userAccount.privacyPolicyAgreement;
-    UserConfigUtils.saveUserConfig(userConfig);
+      await UserConfigUtils.saveUserConfig(userConfig);
   }
 
   /**
@@ -91,7 +91,7 @@ export class RegisterProcessEventsService {
     if (!codeValid) {
       pageObject.invalidVerificationCodeMessage = $localize`:@@register.wrongPhoneNumberVerificationCode: The code you provided is invalid, please check the received code or go back to the previous step to check phone number and resend code`;
     } else {
-      this.validatePhonenNumber();
+      await this.validatePhonenNumber();
       pageObject.invalidVerificationCodeMessage = $localize`:@@register.theCodeIsValid: The code is valid`;
     }
     return codeValid;
@@ -104,12 +104,12 @@ export class RegisterProcessEventsService {
     await this.registerService
       .updateSalonInfos({ ...pageObject.data.salonProfile, salonTime: [] })
       .toPromise();
-    const userConfig = UserConfigUtils.getUserConfig();
+    const userConfig = await UserConfigUtils.getUserConfig();
     Object.keys(userConfig.salonProfile).forEach((key) => {
       userConfig.salonProfile[key] =
         pageObject.data.salonProfile[key] ?? userConfig.salonProfile[key];
     });
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 
   /**
@@ -140,26 +140,26 @@ export class RegisterProcessEventsService {
    *  @description Updat salon reach
    */
   async updateInitialStep(step: number) {
-    const userConfig = UserConfigUtils.getUserConfig();
+    const userConfig = await UserConfigUtils.getUserConfig();
     userConfig.profile.accountCreationInitStep = step;
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 
   /**
    *  @description Updat salon reach
    */
   async updateCurrentStep(step: number) {
-    const userConfig = UserConfigUtils.getUserConfig();
+    const userConfig = await UserConfigUtils.getUserConfig();
     userConfig.profile.accountCreationCurrentStep = step;
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 
   /**
    *  @description Updat salon reach
    */
   async validatePhonenNumber() {
-    const userConfig = UserConfigUtils.getUserConfig();
+    const userConfig = await UserConfigUtils.getUserConfig();
     userConfig.profile.phoneNumberConfirmed = true;
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 }

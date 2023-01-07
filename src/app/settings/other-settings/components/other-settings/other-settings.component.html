@@ -1,0 +1,124 @@
+<ion-content [fullscreen]="true">
+  <app-page-header
+    i18n-title="@@other-settings.otherSettings"
+    title="Other settings"
+  ></app-page-header>
+  <ion-list>
+    <ion-item>
+      <app-setting-item
+        icon="notifications"
+        title="Notifications"
+        i18n-title="@@other-settings.notifications"
+        description="Personalize your notification details"
+        i18n-description="@@other-settings.notificationsDesc"
+        [useSwitch]="true"
+        [(ngModel)]="pageObject.data.settings.appNotifications"
+        (onCheckboxChange)="handelNotificationChange()"
+      ></app-setting-item>
+    </ion-item>
+    <ion-item>
+      <app-setting-item
+        icon="language"
+        i18n-title="@@other-settings.language"
+        title="Language"
+        i18n-description="@@other-settings.languageDesc"
+        description="Manage language"
+        [useModal]="true"
+        [(ngModel)]="userConfig.language"
+        [options]="pageObject.languageOptions"
+        (onValueChanged)="onLanguageChange()"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item>
+      <app-setting-item
+        [route]="routes.onlineBookingManagement"
+        icon="calendar-number"
+        i18n-title="@@other-settings.onlineBooking"
+        title="Online booking"
+        i18n-description="@@other-settings.onlineBookingDesc"
+        description="Manage online booking"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item>
+      <app-setting-item
+        icon="key"
+        i18n-title="@@other-settings.password"
+        title="Password"
+        i18n-description="@@other-settings.passwordDesc"
+        description="Change your password"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item>
+      <app-setting-item
+        icon="help-circle"
+        i18n-title="@@other-settings.faq"
+        title="FAQ's"
+        i18n-description="@@other-settings.faqDesc"
+        description="Modify the list of your FAQ's"
+      ></app-setting-item>
+    </ion-item>
+    <ion-item>
+      <app-setting-item
+        icon="business"
+        i18n-title="@@other-settings.onlineProfile"
+        title="Online profile"
+        i18n-description="@@other-settings.onlineProfileDesc"
+        description="View online profile"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item [onlyDisplayFor]="[roles.Owner]">
+      <app-setting-item
+        icon="trending-up"
+        i18n-title="@@other-settings.promote"
+        title="Promote"
+        i18n-description="@@other-settings.promoteDesc"
+        description="Promote my business"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item [onlyDisplayFor]="[roles.Owner]">
+      <app-setting-item
+        icon="file-tray-full"
+        i18n-title="@@other-settings.reports"
+        title="Reports"
+        i18n-description="@@other-settings.reportsDesc"
+        description="Manage reports"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item [onlyDisplayFor]="[roles.Owner]">
+      <app-setting-item
+        icon="people"
+        i18n-title="@@other-settings.clients"
+        title="Clients"
+        i18n-description="@@other-settings.clientsDesc"
+        description="Manage clients"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item [onlyDisplayFor]="[roles.Owner]">
+      <app-setting-item
+        icon="menu"
+        i18n-title="@@other-settings.history"
+        title="history"
+        i18n-description="@@other-settings.historyDesc"
+        description="Manage history"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item [onlyDisplayFor]="[roles.Owner]">
+      <app-setting-item
+        icon="diamond"
+        i18n-title="@@other-settings.subscriptions"
+        title="subscriptions"
+        i18n-description="@@other-settings.subscriptionsDesc"
+        description="View list of subscriptions"
+      >
+      </app-setting-item>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,15 @@
+<div class="bank-name">
+  {{account.bankName}}
+</div>
+<div class="bank-account-no">
+  {{account.accountNumber}}
+</div>
+<div class="bank-account-holder">
+  {{account.accountHolderName}}
+</div>
+<div *ngIf="showDefault" (click)="handleCheckClick($event)" class="bank-default">
+  Default: 
+  <div class="bank-default-toggle">
+    <ion-toggle (ionChange)="handleCheckChange()" [(ngModel)]="account.default"></ion-toggle>
+  </div>
+</div>

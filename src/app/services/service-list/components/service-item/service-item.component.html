@@ -1,0 +1,48 @@
+<div class="salon-service-item">
+  <div class="salon-service-item-header">
+    <div class="salon-service-item-title" (click)="toggleRows()">
+      {{ item?.name }}
+    </div>
+    <div class="salon-service-item-controls">
+      <ion-icon
+        class="large"
+        *ngIf="showRows"
+        name="add"
+        [onlyDisplayFor]="[roles.Owner]"
+        (click)="createService()"
+      ></ion-icon>
+      <ion-icon
+        name="trash"
+        [onlyDisplayFor]="[roles.Owner]"
+        (click)="deleteCategory()"
+      ></ion-icon>
+      <ion-icon
+        class="large"
+        name="pencil"
+        (click)="editCategory()"
+      ></ion-icon>
+      <ion-icon
+        class="large"
+        [name]="showRows ? 'chevron-up' : 'chevron-down'"
+        (click)="toggleRows()"
+      ></ion-icon>
+    </div>
+  </div>
+  <div *ngIf="showRows" class="salon-service-item-row-list">
+    <div
+      *ngFor="let service of item.services"
+      class="salon-service-item-row"
+      (click)="editService(service)"
+    >
+      <div class="salon-service-item-row-data">
+        <div class="salon-service-item-row-title">
+          {{ service?.name }}
+        </div>
+        <div class="salon-service-item-row-time">
+          {{ service?.duration }} Min
+        </div>
+      </div>
+      <div class="salon-service-item-row-price">{{ service?.price }} MAD</div>
+    </div>
+  </div>
+</div>

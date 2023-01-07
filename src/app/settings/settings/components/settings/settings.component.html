@@ -1,0 +1,95 @@
+<ion-content [fullscreen]="true">
+  <div class="settings-header">
+    <div class="profile-header">
+      <span class="profile-header-title" i18n="@@barberSettings.settings"
+        >Settings</span
+      >
+    </div>
+    <div class="account-profile">
+      <div class="profile-image">
+        <ion-avatar>
+          <img alt="Profile Image" [src]="pageObject.data.image" />
+        </ion-avatar>
+      </div>
+      <div class="profile-data">
+        <div class="profile-data-salon-name">
+          {{ pageObject.data.name }}
+        </div>
+        <div class="profile-data-salon-email">
+          {{ pageObject.data.email }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-list>
+    <ion-item>
+      <app-setting-item
+        icon="business"
+        [route]="routes.barberSalonSettingsUrl"
+        title="Shop Details"
+        i18n-title="@@barberSettings.shopDetails"
+        description="Edit your barbers details here"
+        i18n-description="@@barberSettings.shopDetailsDesc"
+      ></app-setting-item>
+    </ion-item>
+    <ion-item>
+      <app-setting-item
+        icon="people-circle"
+        [route]="routes.teamList"
+        i18n-title="@@barberSettings.manageTeam"
+        title="Manage Team"
+        i18n-description="@@barberSettings.manageTeamsDesc"
+        description="Edit your team membres availability"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item>
+      <app-setting-item
+        icon="grid"
+        [route]="routes.barberSalonServicessUrl"
+        i18n-title="@@barberSettings.services"
+        title="Services"
+        i18n-description="@@barberSettings.servicesDesc"
+        description="Edit your services"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item>
+      <app-setting-item
+        [route]="routes.gallery"
+        icon="images"
+        i18n-title="@@barberSettings.gallary"
+        title="Gallary"
+        i18n-description="@@barberSettings.gallaryDesc"
+        description="Manage Photos, Videos, Etc"
+      ></app-setting-item>
+    </ion-item>
+    <ion-item [onlyDisplayFor]="[roles.Owner]">
+      <app-setting-item
+        icon="wallet"
+        [route]="routes.bankAccounts"
+        i18n-title="@@barberSettings.bankAccountDetails"
+        title="Bank Account Details"
+        i18n-description="@@barberSettings.bankAccountDetailsDesc"
+        description="Edit your bank details"
+      >
+      </app-setting-item>
+    </ion-item>
+    <ion-item>
+      <app-setting-item
+        icon="settings"
+        [route]="routes.otherSettings"
+        i18n-title="@@barberSettings.settings"
+        title="Settings"
+        i18n-description="@@barberSettings.settingsDesc"
+        description="Manage language, password, Etc"
+      >
+      </app-setting-item>
+    </ion-item>
+  </ion-list>
+  <div class="logout-button-container">
+    <button (click)="logout()" class="logout-button" i18n="@@global.logout">
+      Logout
+    </button>
+  </div>
+</ion-content>

@@ -1,6 +1,8 @@
 import { UserProfile } from '../models/user-profile';
 import { SalonProfile } from './../models/salon-profile';
 import { UserConfig } from './../models/user-config';
+import { StorageUtils } from './storage-utils';
+
 export class UserConfigUtils {
   private static configKey: string = 'USER-CONFIG';
 
@@ -18,8 +20,8 @@ export class UserConfigUtils {
   /*
    *  @description Init user config
    */
-  public static initUserConfig(): UserConfig {
-    var oldConfig = this.getUserConfig();
+  public static async initUserConfig(): Promise<UserConfig> {
+    var oldConfig = await this.getUserConfig();
     const config = this.getInitUserConfig();
     config.language = oldConfig.language;
     config.visitedStarter = oldConfig.visitedStarter;
@@ -30,8 +32,8 @@ export class UserConfigUtils {
   /*
    *  @description Get user config
    */
-  static getUserConfig(): UserConfig {
-    const config = localStorage.getItem(this.configKey);
+  static async getUserConfig(): Promise<UserConfig> {
+    const config = await StorageUtils.getItem(this.configKey);
     try {
       const configObj = JSON.parse(config);
       if (configObj) {
@@ -47,40 +49,40 @@ export class UserConfigUtils {
   /*
    *  @description Save user config
    */
-  static saveUserConfig(config: UserConfig) {
+  static async saveUserConfig(config: UserConfig) {
     try {
       var configStr = JSON.stringify(config);
-      localStorage.setItem(this.configKey, configStr);
+      await StorageUtils.setItem(this.configKey, configStr);
     } catch (error) {
       var configStr = JSON.stringify(this.getInitUserConfig());
-      localStorage.setItem(this.configKey, configStr);
+      await StorageUtils.setItem(this.configKey, configStr);
     }
   }
 
   /*
    *  @description Save user config
    */
-  static saveUserProfile(profile: UserProfile) {
-    const userConfig = UserConfigUtils.getUserConfig();
+  static async saveUserProfile(profile: UserProfile) {
+    const userConfig = await UserConfigUtils.getUserConfig();
     userConfig.profile = profile;
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 
   /*
    *  @description Save user config
    */
-  static saveUserProfileProperties(profile: UserProfile) {
-    const userConfig = UserConfigUtils.getUserConfig();
+  static async saveUserProfileProperties(profile: UserProfile) {
+    const userConfig = await UserConfigUtils.getUserConfig();
     userConfig.profile = {...userConfig.profile, ...profile};
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 
   /*
    *  @description Save user config
    */
-  static removeUserProfile() {
-    const userConfig = UserConfigUtils.getUserConfig();
+  static async removeUserProfile() {
+    const userConfig = await UserConfigUtils.getUserConfig();
     userConfig.profile = null;
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 }

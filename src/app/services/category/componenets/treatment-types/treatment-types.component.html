@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <div *ngIf="showChips">
+      <ion-chip *ngFor="let item of selectedItems">{{item.label}}</ion-chip>
+    </div>
+    <ion-button id="open-modal" expand="block" i18n="@@global.select">Select</ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-modal trigger="open-modal">
+    <ng-template>
+      <ion-content [fullscreen]="true">
+        <div class="profile-header">
+          <ion-icon name="close-outline" (click)="cancel()"></ion-icon>
+          <span class="profile-header-title" i18n="@@category.treatments">Treatments</span>
+        </div>
+        <div class="profile-body">
+          <ion-searchbar *ngIf="false" placeholder="Search by treatment name"></ion-searchbar>
+          <div>
+            <ion-list *ngFor="let type of treatments">
+              <ion-list-header>
+                <ion-label>{{type.name}}</ion-label>
+              </ion-list-header>
+              <ion-item *ngFor="let treatment of type.treatments">
+                <ion-checkbox [disabled]="!treatment.selected && disableCheckBoxes" [(ngModel)]="treatment.selected"
+                  (ionChange)="checkBoxChnage()" slot="start"></ion-checkbox>
+                <ion-label>{{treatment.label}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </div>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

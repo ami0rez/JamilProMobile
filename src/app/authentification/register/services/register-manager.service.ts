@@ -26,10 +26,10 @@ export class RegisterManagerService {
    *  @description Validate step and go next
    */
   async executeStepAndGoNext(pageObject: RegisterPage) {
-    const userConfig = UserConfigUtils.getUserConfig();
+    const userConfig = await UserConfigUtils.getUserConfig();
     this.registerProcessManagerService.executeStep(pageObject, userConfig);
     this.registerProcessManagerService.goNext(pageObject, userConfig);
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 
   /**
@@ -47,9 +47,9 @@ export class RegisterManagerService {
    *  @description Move back
    */
   async moveBack(pageObject: RegisterPage) {
-    const userConfig = UserConfigUtils.getUserConfig();
+    const userConfig = await UserConfigUtils.getUserConfig();
     pageObject.registerStep--;
     userConfig.profile.accountCreationCurrentStep = pageObject.registerStep;
-    UserConfigUtils.saveUserConfig(userConfig);
+    await UserConfigUtils.saveUserConfig(userConfig);
   }
 }

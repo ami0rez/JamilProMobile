@@ -1,0 +1,65 @@
+<ion-content>
+  <app-page-header
+    i18n-title="@@balance.transactionDetails"
+    title="Transaction Details"
+  ></app-page-header>
+  <div class="member-profile">
+    <div class="profile-data">
+      <div class="profile-avatar">
+        <img alt="Profile Image" [src]="pageObject.data.payment.image" />
+      </div>
+      <span class="profile-from" i18n="@@balance.from">From</span>
+      <span class="profile-username">{{
+        pageObject.data.payment.username
+      }}</span>
+    </div>
+    <div class="padding-l-r">
+      <app-output-value
+        label="Transaction Id"
+        i18n-label="@@balance.transactionId"
+        [ngModel]="'X5D7892GH3'"
+      ></app-output-value>
+
+      <app-output-value
+        label="Date"
+        i18n-label="@@balance.phoneNumber"
+        [ngModel]="
+          pageObject.data.payment.date | date : appConstants.FULLDATETIMEAM
+        "
+      ></app-output-value>
+
+      <app-output-value
+        label="Item Totale"
+        i18n-label="@@balance.itemTotale"
+        [(ngModel)]="pageObject.data.payment.originalAmount"
+        [suffix]="appConstants.CURRENCY"
+      ></app-output-value>
+
+      <app-output-value
+        label="Tax"
+        i18n-label="@@balance.tax"
+        [(ngModel)]="pageObject.data.payment.tax"
+        [suffix]="appConstants.CURRENCY"
+      ></app-output-value>
+
+      <app-output-value
+        label="Coupon discount"
+        i18n-label="@@balance.couponDiscount"
+        [ngModel]="pageObject.data.payment.couponDiscount ?? 0"
+        [suffix]="appConstants.CURRENCY"
+      ></app-output-value>
+
+      <app-separator [borderHeight]="1" [dashed]="true"></app-separator>
+      <app-output-value
+        label="Total paid"
+        i18n-label="@@balance.totalPaid"
+        [(ngModel)]="pageObject.data.payment.paidAmount"
+        [suffix]="appConstants.CURRENCY"
+      ></app-output-value>
+      <app-payment-status-card
+        [paid]="pageObject.data.payment.paid"
+        [byCart]="pageObject.data.payment.byCart"
+      ></app-payment-status-card>
+    </div>
+  </div>
+</ion-content>

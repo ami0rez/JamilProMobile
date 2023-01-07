@@ -1,0 +1,102 @@
+<ion-content [fullscreen]="true">
+  <app-page-header
+    i18n-title="@@barberShop.completeProfile"
+    title="Complete Profile"
+  ></app-page-header>
+  <div class="profile-body" [onlyEditFor]="[roles.Owner]">
+    <div class="profile-image">
+      <ion-avatar>
+        <img alt="Profile Image" [src]="pageObject.base64Image" />
+        <ion-icon
+          (click)="pickImage()"
+          class="profile-image-picker"
+          name="camera-outline"
+        ></ion-icon>
+      </ion-avatar>
+    </div>
+    <div>
+      <app-input
+        label="Shop Name"
+        i18n-label="@@barberShop.shopName"
+        [(ngModel)]="pageObject.data.name"
+      >
+      </app-input>
+      <app-input
+        label="Business leagal name"
+        i18n-label="@@barberShop.businessLeagalName"
+        [(ngModel)]="pageObject.data.leagalName"
+      >
+      </app-input>
+      <app-input-address
+        i18n-label="@@barberShop.address"
+        label="Address"
+        [(ngModel)]="pageObject.data.address"
+      ></app-input-address>
+      <app-input
+        label="Phone Number"
+        i18n-label="@@barberShop.phoneNumber"
+        [(ngModel)]="pageObject.data.phoneNumber"
+      >
+      </app-input>
+      <app-input
+        label="Email"
+        i18n-label="@@barberShop.email"
+        [(ngModel)]="pageObject.data.email"
+      >
+      </app-input>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@barberShop.shopTime">Shop Time</legend>
+          <app-salon-time-editor
+            [pageObject]="pageObject"
+          ></app-salon-time-editor>
+        </fieldset>
+      </ion-item>
+      <app-dropdown
+        label="Salon Type"
+        i18n-label="@@barberShop.salonType"
+        placeholder="Salon Type"
+        [(ngModel)]="pageObject.data.salonGender"
+        [options]="pageObject.genderOptions"
+        [disabled]="pageObject.inputsDisabled"
+      ></app-dropdown>
+      <app-input
+        label="Website"
+        i18n-label="@@barberShop.website"
+        [(ngModel)]="pageObject.data.website"
+      >
+      </app-input>
+      <app-inpu
+        label="Facebook"
+        i18n-label="@@barberShop.facebook"
+        [(ngModel)]="pageObject.data.facebook"
+      >
+      </app-inpu>
+      <app-input
+        label="Instagram"
+        i18n-label="@@barberShop.instagram"
+        [(ngModel)]="pageObject.data.instagram"
+      >
+      </app-input>
+      <app-input
+        label="Twitter"
+        i18n-label="@@barberShop.twitter"
+        [(ngModel)]="pageObject.data.twitter"
+      >
+      </app-input>
+    </div>
+  </div>
+</ion-content>
+<ion-footer [onlyDisplayFor]="[roles.Owner]">
+  <ion-toolbar>
+    <ion-title>
+      <app-footer-controls
+        (onConfirm)="saveProfile()"
+        [showCancel]="false"
+        [showDelete]="false"
+        okText="Save"
+        i18n-okText="@@global.save"
+      ></app-footer-controls>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

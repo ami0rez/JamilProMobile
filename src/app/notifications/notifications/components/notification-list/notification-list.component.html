@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true">
+  <app-page-header
+    i18n-title="@@notification.notifications"
+    title="Notifications"
+  ></app-page-header>
+  <ion-list>
+    <ion-item
+      class="ion-no-padding"
+      *ngFor="let notification of pageObject.data.notifications"
+    >
+      <app-notification-item
+        (click)="viewNotifcationDetails(notification)"
+        [icon]="notification.icon"
+        [title]="notification.title"
+        [seen]="notification.seen"
+        [description]="notification.description"
+      ></app-notification-item>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots"
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

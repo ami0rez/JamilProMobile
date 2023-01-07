@@ -24,6 +24,10 @@ export class AuthenticationService {
   public authChanged = this.authChangeSub.asObservable();
   private jwtHelper: JwtHelperService;
 
+  userProfile: UserProfile;
+
+  
+
   constructor(private router: Router) {
     this.jwtHelper = new JwtHelperService();
   }
@@ -32,8 +36,7 @@ export class AuthenticationService {
    *  @description Check if user authenticated
    */
   public get userAuthenticated() {
-    const userConfig = UserConfigUtils.getUserConfig();
-    return userConfig.profile !== null;
+    return this.userProfile !== null;
   }
 
   /**
@@ -61,9 +64,9 @@ export class AuthenticationService {
   /**
    *  @description get user profile
    */
-  public get userProfile(): UserProfile {
-    const userConfig = UserConfigUtils.getUserConfig();
-    return userConfig.profile;
+  public async loadUserProfile() {
+    const userConfig = await UserConfigUtils.getUserConfig();
+    this.userProfile = userConfig.profile;
   }
 
   /**

@@ -1,0 +1,19 @@
+<ion-content [fullscreen]="true">
+  <app-page-header
+    i18n-title="@@gallery.gallery"
+    title="Gallery"
+  ></app-page-header>
+  <app-tabs>
+    <app-tab i18n-legend="@@gallery.photos" legend="Photos">
+      <div class="image-list">
+        <ion-img
+          *ngFor="let imageSrc of pageObject.data.gallery.images"
+          [src]="imageSrc"
+        ></ion-img>
+      </div>
+    </app-tab>
+    <app-tab i18n-legend="@@gallery.videos" legend="Videos"> </app-tab>
+  </app-tabs>
+</ion-content>
+<app-fab
+[onlyDisplayFor]="[roles.Owner]" [items]="pageObject.controls"></app-fab>

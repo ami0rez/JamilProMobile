@@ -1,0 +1,40 @@
+<ion-content>
+  <div class="service-body">
+    <app-page-header [title]="pageObject.editPageTitle"></app-page-header>
+    <div>
+      <app-input
+        label="Bank name"
+        i18n-label="@@bank-account.bankName"
+        [(ngModel)]="pageObject.data.bankAccount.bankName"
+      ></app-input>
+      <app-input
+        label="Account number"
+        i18n-label="@@bank-account.accountNumber"
+        [(ngModel)]="pageObject.data.bankAccount.accountNumber"
+      ></app-input>
+      <app-input
+        label="Account holder name"
+        i18n-label="@@bank-account.accountHolderName"
+        [(ngModel)]="pageObject.data.bankAccount.accountHolderName"
+      ></app-input>
+      <app-input
+        label="Phone number"
+        i18n-label="@@bank-account.phoneNumber"
+        [(ngModel)]="pageObject.data.bankAccount.phoneNumber"
+      ></app-input>
+      <app-checkbox
+        label="Chooose as default account"
+        i18n-label="@@bank-account.choooseAsDefaultAccount"
+        [(ngModel)]="pageObject.data.bankAccount.default"
+      ></app-checkbox>
+    </div>
+  </div>
+</ion-content>
+<app-footer-controls
+  (onConfirm)="save()"
+  (onDelete)="delete()"
+  [showCancel]="false"
+  okText="Save"
+  i18n-okText="@@global.save"
+  [showDelete]="!!pageObject.data.bankAccountId"
+></app-footer-controls>

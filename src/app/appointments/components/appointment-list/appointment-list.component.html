@@ -1,0 +1,57 @@
+<ion-content [fullscreen]="true">
+  <app-page-header
+    [showBackIcon]="false"
+    i18n-title="@@appointments.appointments"
+    title="Appointments"
+  ></app-page-header>
+  <app-tabs [(tabIndex)]="pageObject.data.tabIndex" (tabChanged)="tabChanged($event)">
+    <app-tab i18n-legend="@@appointments.new" legend="New">
+      <app-appointment-item
+        *ngFor="let item of this.pageObject.data.newAppointmentList"
+        (click)="editAppointment(item)"
+        [appointment]="item"
+      ></app-appointment-item>
+      <ion-infinite-scroll (ionInfinite)="onIonNewInfinite($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="dots"
+        ></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </app-tab>
+    <app-tab i18n-legend="@@appointments.upcoming" legend="Upcoming">
+      <app-appointment-item
+        *ngFor="let item of this.pageObject.data.upcomingAppointmentList"
+        (click)="editAppointment(item)"
+        [appointment]="item"
+      ></app-appointment-item>
+      <ion-infinite-scroll (ionInfinite)="onIonUpcomingInfinite($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="dots"
+        ></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </app-tab>
+    <app-tab i18n-legend="@@appointments.completed" legend="Completed">
+      <app-appointment-item
+        *ngFor="let item of this.pageObject.data.completedAppointmentList"
+        (click)="editAppointment(item)"
+        [appointment]="item"
+      ></app-appointment-item>
+      <ion-infinite-scroll (ionInfinite)="onIonCompletedInfinite($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="dots"
+        ></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </app-tab>
+    <app-tab i18n-legend="@@appointments.cancelled" legend="Cancelled">
+      <app-appointment-item
+        *ngFor="let item of this.pageObject.data.cancelledAppointmentList"
+        (click)="editAppointment(item)"
+        [appointment]="item"
+      ></app-appointment-item>
+      <ion-infinite-scroll (ionInfinite)="onIonCancelledInfinite($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="dots"
+        ></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </app-tab>
+  </app-tabs>
+</ion-content>

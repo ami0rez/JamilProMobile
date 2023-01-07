@@ -1,0 +1,37 @@
+<ion-content>
+  <app-page-header
+    i18n-title="@@withdrawal.withdrawal"
+    title="Withdrawal"
+  ></app-page-header>
+  <div>
+    <app-panel
+      label="Default bank account"
+      i18n-label=":@@withdrawal.defaultBankAccount"
+      description="the displayed bank account is selected as default in settings to choose another one, please head to settings page and change selected account"
+      i18n-description=":@@withdrawal.defaultBankAccountDesc"
+    >
+      <ion-list lines="none">
+        <ion-item>
+          <app-bank-account-item
+            [showDefault]="false"
+            [account]="pageObject.data.account"
+          ></app-bank-account-item>
+        </ion-item> </ion-list
+    ></app-panel>
+    <app-number-input
+      label="Amount"
+      i18n-label="@@withdrawal.amount"
+      [(ngModel)]="pageObject.data.item.amount"
+      [suffix]="appConstants.CURRENCY"
+      [min]="pageObject.minAmount"
+      [disabled]="pageObject.data.withdrawalId"
+    ></app-number-input>
+  </div>
+</ion-content>
+<app-footer-controls
+  (onConfirm)="withdrawal()"
+  [showCancel]="false"
+  [showDelete]="false"
+  okText="Withdraw"
+  i18n-okText="@@withdrawal.withdraw"
+></app-footer-controls>

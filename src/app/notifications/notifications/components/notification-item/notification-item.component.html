@@ -1,0 +1,14 @@
+<div [class]="'notification-item-container ' + (seen ? '':'new')">
+  <div (click)="navigate()" [class]="'notification-icon ' + icon">
+    <ion-icon [name]="icon"></ion-icon>
+  </div>
+  <div (click)="navigate()" class="profile-data">
+    <div class="profile-data-salon-name">
+      {{ title }}
+    </div>
+    <div class="profile-data-salon-email">
+      {{ description }}
+    </div>
+  </div>
+  
+</div>

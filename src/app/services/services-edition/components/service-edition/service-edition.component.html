@@ -1,0 +1,87 @@
+<ion-content>
+  <div class="service-body">
+    <app-page-header
+      i18n-title="@@service.services"
+      title="Services"
+    ></app-page-header>
+    <div [onlyEditFor]="[roles.Owner]">
+      <app-input
+        label="Name"
+        i18n-label="@@service.name"
+        [(ngModel)]="pageObject.data.name"
+      ></app-input>
+      <app-modal-options
+        id="category"
+        label="Category"
+        i18n-label="@@service.category"
+        [(ngModel)]="pageObject.data.categoryId"
+        [options]="pageObject.options"
+        [maxItems]="1"
+        [showListHeaders]="false"
+        i18n-title="@@service.category"
+        title="Category"
+      ></app-modal-options>
+      <app-modal-options
+        id="service"
+        label="Can be done by"
+        i18n-label="@@service.canBeDoneBy"
+        [(ngModel)]="pageObject.data.members"
+        [options]="pageObject.memberOptions"
+        [maxItems]="1000"
+        [showListHeaders]="false"
+        i18n-title="@@service.members"
+        title="Members"
+      ></app-modal-options>
+      <app-dropdown
+        label="Service available for"
+        i18n-label="@@service.serviceAvailableFor"
+        [(ngModel)]="pageObject.data.targetGeneder"
+        [options]="pageObject.genderOptions"
+        [disabled]="pageObject.disableGenderEditiong"
+      ></app-dropdown>
+      <app-number-input
+        label="Duration"
+        i18n-label="@@service.duration"
+        [(ngModel)]="pageObject.data.duration"
+        suffix="Min"
+      ></app-number-input>
+      <app-number-input
+        label="Price"
+        i18n-label="@@service.price"
+        [(ngModel)]="pageObject.data.price"
+        suffix="MAD"
+      ></app-number-input>
+      <app-dropdown
+        label="Price type"
+        i18n-label="@@service.priceType"
+        [(ngModel)]="pageObject.data.priceType"
+        [options]="pageObject.priceTypesOptions"
+      ></app-dropdown>
+      <app-number-input
+        label="Extra Time"
+        i18n-label="@@service.extraTime"
+        [(ngModel)]="pageObject.data.extraTime"
+        suffix="Min"
+      ></app-number-input>
+      <app-checkbox
+        label="Online Booking"
+        i18n-label="@@service.onlineBooking"
+        [(ngModel)]="pageObject.data.onlineBooking"
+      ></app-checkbox>
+      <app-checkbox
+        label="Only on site"
+        i18n-label="@@service.onlyOnSite"
+        [(ngModel)]="pageObject.data.onSite"
+      ></app-checkbox>
+    </div>
+  </div>
+</ion-content>
+<app-footer-controls
+  [onlyDisplayFor]="[roles.Owner]"
+  (onConfirm)="saveService()"
+  (onDelete)="deleteService()"
+  [showCancel]="false"
+  okText="Save"
+  i18n-okText="@@global.save"
+  [showDelete]="!!this.pageObject.data.id"
+></app-footer-controls>

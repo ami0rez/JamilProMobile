@@ -1,0 +1,70 @@
+<ion-content>
+  <div class="stroies-container">
+    <div class="story-timers">
+      <div
+        *ngFor="let item of pageObject.data.items; let i = index"
+        class="progress-container {{
+          pageObject.storyIndex == i + 1 ? ' current' : ''
+        }} {{ pageObject.storyIndex > i + 1 ? ' full' : '' }}"
+      >
+        <div
+          class="progress"
+          [ngStyle]="{
+            'transition-duration': pageObject.data.storyDuration + 's'
+          }"
+        ></div>
+      </div>
+    </div>
+    <swiper
+      (slideChangeTransitionEnd)="sliderMove($event)"
+      #swiper
+    >
+      <ng-template
+        *ngFor="let item of pageObject.data.items; let i = index"
+        swiperSlide
+      >
+        <div class="starter-story-item">
+          <div class="starter-story-content">
+            <ion-img class="story-content-image" [src]="item.image"></ion-img>
+            <span class="story-content-title">{{pageObject.storyIndex}}. {{ item.title }}</span>
+            <span class="story-content-description">{{
+              item.description
+            }}</span>
+          </div>
+          <div class="starter-story-controls">
+            <app-button
+              (click)="redirectToLogin()"
+              text="Get Started"
+              i18n-text="@@starter.getStarted"
+              color="dark"
+              [style]="'large'"
+            ></app-button>
+            <div class="starter-story-control-settings">
+              <span (click)="changeLanguage()">
+                <ion-icon name="language-outline"></ion-icon>
+                <span i18n="@@global.currentLanguage">English</span>
+              </span>
+              <span>
+                <ion-icon name="help-buoy-outline"></ion-icon
+                ><span i18n="@@starter.support">Support</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+</ion-content>
+
+<app-modal-options
+  [showModalData]="false"
+  id="language"
+  label="Languages"
+  [(ngModel)]="userConfig.language"
+  (onValueChanged)="onLanguageChange()"
+  [options]="pageObject.languageOptions"
+  [single]="true"
+  [maxItems]="1"
+  [showListHeaders]="false"
+  title="Language"
+></app-modal-options>

@@ -1,0 +1,62 @@
+<ion-content>
+  <div class="service-body">
+    <app-page-header [title]="pageObject.editPageTitle"></app-page-header>
+    <div>
+      <app-avatar
+        [(ngModel)]="pageObject.data.member.image"
+        [defaultAvatar]="pageObject.defaultAvatar"
+      ></app-avatar>
+      <app-input
+        label="First Name"
+        i18n-label="@@team.firstName"
+        [(ngModel)]="pageObject.data.member.firstName"
+      ></app-input>
+      <app-input
+        label="Last Name"
+        i18n-label="@@team.lastName"
+        [(ngModel)]="pageObject.data.member.lastName"
+      ></app-input>
+      <app-input
+        label="Phone Number"
+        i18n-label="@@team.phoneNumber"
+        [(ngModel)]="pageObject.data.member.phoneNumber"
+      ></app-input>
+      <app-input
+        label="Email"
+        i18n-label="@@team.email"
+        [(ngModel)]="pageObject.data.member.email"
+      ></app-input>
+      <app-checkbox
+        [(ngModel)]="pageObject.data.member.hasAccess"
+        [useToggle]="true"
+        i18n-label="@@team.canAccessToSalon"
+        label="Can Access to salon"
+      ></app-checkbox>
+      <app-dropdown
+        label="Role"
+        i18n-label="@@team.role"
+        [(ngModel)]="pageObject.data.member.role"
+        [options]="pageObject.rolesOptions"
+      ></app-dropdown>
+      <app-modal-options
+        label="Services"
+        i18n-label="@@team.services"
+        [options]="pageObject.serviceOptions"
+        [(ngModel)]="pageObject.data.member.services"
+        [maxItems]="100"
+        i18n-title="@@team.services"
+        title="Services"
+      ></app-modal-options>
+    </div>
+  </div>
+</ion-content>
+<app-footer-controls
+  (onConfirm)="save()"
+  (onDelete)="remove()"
+  [showCancel]="false"
+  okText="Save"
+  i18n-okText="@@global.save"
+  deleteText="Remove from team"
+  i18n-deleteText="@@team.removeFromTeam"
+  [showDelete]="!!pageObject.data.memberId"
+></app-footer-controls>

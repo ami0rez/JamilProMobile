@@ -1,0 +1,101 @@
+<ion-content [fullscreen]="true">
+  <app-page-header
+    i18n-title="@@appointments.appointmentDetails"
+    title="Appointment details"
+  ></app-page-header>
+  <div class="appointment-edit">
+    <div class="appointment-header">
+      <div class="client-image">
+        <ion-img [src]="pageObject.data.appointment.image"></ion-img>
+      </div>
+      <div class="client-name">
+        {{ pageObject.data.appointment.userName }}
+      </div>
+
+      <div class="appointment-date">
+        <div>
+          <ion-icon name="calendar-outline"></ion-icon>
+          <div class="appointment-day">
+            {{ pageObject.data.appointment.date | date : "EEE, d MMM" }}
+          </div>
+        </div>
+        <div>
+          <ion-icon name="time-outline"></ion-icon>
+          <div class="appointment-time">
+            {{ pageObject.data.appointment.startTime | date : "h a" }}-
+            {{ pageObject.data.appointment.endTime | date : "h a" }}
+          </div>
+        </div>
+        <div>
+          <div class="appointment-duration">
+            {{ pageObject.data.appointment.duration }} min
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="appointment-details">
+      <app-panel
+        i18n-label="@@appointment-item.serviceList"
+        label="Service List"
+        [extra]="this.pageObject.data.appointment.serviceList.length.toString()"
+      >
+        <app-output-value
+          *ngFor="let service of this.pageObject.data.appointment.serviceList"
+          [label]="service.name"
+          [ngModel]="service.duration"
+          suffix="Min"
+          [extra]="service.price + ' MAD'"
+        ></app-output-value>
+        <app-separator *ngIf="false"></app-separator>
+        <app-output-value
+          *ngIf="false"
+          i18n-label="@@appointment-item.couponCodeApplied"
+          label="Coupon code applied"
+          ngModel="HGK675"
+          extra="-5 MAD"
+        ></app-output-value
+      ></app-panel>
+      <app-separator></app-separator>
+      <app-output-value
+        i18n-label="@@appointment-item.totale"
+        label="Totale"
+        [extra]="this.pageObject.data.appointment.totalPrice + ' MAD'"
+      ></app-output-value>
+      <app-output-value
+        *ngIf="false"
+        i18n-label="@@appointment-item.tax"
+        label="Tax"
+        extra="2 MAD"
+      ></app-output-value>
+      <app-output-value
+        *ngIf="false"
+        i18n-label="@@appointment-item.couponDiscount"
+        label="Coupon discount"
+        extra="37 MAD"
+      ></app-output-value>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <app-footer-controls
+        *ngIf="
+          pageObject.data.appointment.canConfirm ||
+          pageObject.data.appointment.canCancel
+        "
+        (onConfirm)="confirmAppointment()"
+        (onDelete)="rejectAppointment()"
+        [showCancel]="false"
+        [showOk]="pageObject.data.appointment.canConfirm"
+        [showDelete]="pageObject.data.appointment.canCancel"
+        [disableDelete]="pageObject.data.appointment.cancelTimePassed"
+        deleteText="Refuse"
+        i18n-deleteText="@@global.refuse"
+        okText="Confirm"
+        i18n-okText="@@global.confirm"
+      ></app-footer-controls>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

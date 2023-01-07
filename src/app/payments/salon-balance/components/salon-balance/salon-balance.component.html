@@ -1,0 +1,54 @@
+<ion-content>
+  <app-page-header
+    i18n-title="@@balance.earnings"
+    title="Earnings"
+  ></app-page-header>
+  <div class="earnings-card">
+    <div class="earnings-row-columns">
+      <div class="earnings-title" i18n="@@balance.todaydEarnings">
+        Todayd's Earnings
+      </div>
+      <div class="earnings-amount">
+        {{ pageObject.data.earnings.todaysEarnings | number }} MAD
+      </div>
+    </div>
+    <div class="earnings-row-rows">
+      <div class="earnings-button blue">
+        <ion-icon name="document-text"></ion-icon>
+        <span class="earnings-button-name" i18n="@@balance.emailInvoice"
+          >Email Invoice</span
+        >
+      </div>
+      <div class="earnings-button orange" (click)="startWithdrawal()">
+        <ion-icon name="wallet"></ion-icon>
+        <span class="earnings-button-name" i18n="@@balance.Withdrawal"
+          >Withdrawal</span
+        >
+      </div>
+    </div>
+  </div>
+  <div
+    class="balance-item"
+    *ngFor="let payment of pageObject.data.list"
+    (click)="viewPayment(payment)"
+  >
+    <div class="balance-item-content">
+      <ion-img [src]="payment.image"></ion-img>
+      <div class="balance-item-data">
+        <div class="balance-user-date">
+          {{ payment.date | date : "EEE, d MMM" }}
+        </div>
+        <div class="balance-user-name">{{ payment.username }}</div>
+      </div>
+      <div class="balance-price">
+        <div class="balance-price-currency">MAD</div>
+        <div class="balance-price-amount">{{ payment.amount }}</div>
+      </div>
+    </div>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots"
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

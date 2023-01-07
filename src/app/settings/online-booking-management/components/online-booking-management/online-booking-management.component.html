@@ -1,0 +1,148 @@
+<ion-content>
+  <div class="service-body">
+    <app-page-header
+      i18n-title="@@online-booking.onlineBooking"
+      title="Online Booking"
+    ></app-page-header>
+    <div [onlyEditFor]="[roles.Owner]">
+      <!-- Online booking availability -->
+      <app-panel
+        label="Online booking availability"
+        i18n-label="@@online-booking.onlineBookingAvailability"
+      >
+        <app-modal-options
+          id="bookBefore"
+          label="Clients can book before"
+          i18n-label="@@online-booking.clientsCanBookBefore"
+          [(ngModel)]="pageObject.data.settings.bookBefore"
+          [options]="pageObject.bookBeforeOptions"
+          [single]="true"
+        ></app-modal-options>
+        <app-modal-options
+          id="bookAfter"
+          label="Clients can book after"
+          i18n-label="@@online-booking.clientsCanBookAfter"
+          [(ngModel)]="pageObject.data.settings.bookMax"
+          [options]="pageObject.bookMaxOptions"
+          [single]="true"
+        ></app-modal-options>
+        <app-checkbox
+          label="Allow clients to select team members"
+          i18n-label="@@online-booking.allowClientsToSelectTeamMembers"
+          [(ngModel)]="pageObject.data.settings.canSelectMember"
+        ></app-checkbox>
+      </app-panel>
+
+      <!-- Appointment Confirmation -->
+      <app-panel
+        label="Automatic confirmation"
+        i18n-label="@@online-booking.automaticConfirmation"
+      >
+        <app-checkbox
+          label="Reservations will be confirmed automatically"
+          i18n-label="@@online-booking.reservationsWillBeConfirmedAutomatically"
+          [(ngModel)]="pageObject.data.settings.automaticConfirmation"
+        ></app-checkbox>
+        <app-modal-options
+          *ngIf="pageObject.data.settings.automaticConfirmation"
+          id="confirmAfter"
+          label="Confirm after"
+          i18n-label="@@online-booking.confirmAfter"
+          [(ngModel)]="pageObject.data.settings.confirmAfter"
+          [options]="pageObject.confirmAfterOptions"
+          [single]="true"
+        ></app-modal-options>
+        <app-checkbox
+          *ngIf="!pageObject.data.settings.automaticConfirmation"
+          label="Recieve appointment notification"
+          i18n-label="@@online-booking.recieveAppointmentNotification"
+          [(ngModel)]="pageObject.data.settings.recieveAppointmentNotification"
+        ></app-checkbox>
+        <app-modal-options
+          *ngIf="
+            !pageObject.data.settings.automaticConfirmation &&
+            pageObject.data.settings.recieveAppointmentNotification
+          "
+          id="resendNotification"
+          label="Resend notification before"
+          i18n-label="@@online-booking.resendNotificationBefore"
+          [(ngModel)]="pageObject.data.settings.resendNotificationBefore"
+          [options]="pageObject.resendNotificationOptions"
+          [single]="true"
+        ></app-modal-options>
+      </app-panel>
+
+      <!-- Cancellation -->
+      <app-panel
+        label="Online cancellation and rescheduling"
+        i18n-label="@@online-booking.onlineCancellationRescheduling"
+      >
+        <app-modal-options
+          id="cancelOrReschedule"
+          label="Clients can cancel or reschedule online"
+          i18n-label="@@online-booking.clientsCanCancelOrRescheduleOnline"
+          [(ngModel)]="pageObject.data.settings.cancelBefore"
+          [options]="pageObject.rescheduleOptions"
+          [single]="true"
+        ></app-modal-options>
+      </app-panel>
+
+      <!-- Online booking emails -->
+      <app-panel
+        label="Online booking emails"
+        i18n-label="@@online-booking.onlineBookingEmails"
+      >
+        <app-checkbox
+          label="Send to selected team member"
+          i18n-label="@@online-booking.sendToSelectedTeamMember"
+          [(ngModel)]="pageObject.data.settings.sendMailToMember"
+        ></app-checkbox>
+        <app-checkbox
+          label="Send to specific mail address"
+          i18n-label="@@online-booking.sendToSpecificMailAddress"
+          [(ngModel)]="pageObject.data.settings.sendMailToAddress"
+        ></app-checkbox>
+        <app-input
+          *ngIf="pageObject.data.settings.sendMailToAddress"
+          label="Specific mail address"
+          i18n-label="@@online-booking.specificMailAddress"
+          [(ngModel)]="pageObject.data.settings.mailAddress"
+        ></app-input>
+      </app-panel>
+
+      <!-- Featured service -->
+      <app-panel
+        label="Featured service"
+        i18n-label="@@online-booking.featuredService"
+      >
+        <app-checkbox
+          label="Show top 6 most popular services"
+          i18n-label="@@online-booking.showTop6MostPopularServices"
+          [(ngModel)]="pageObject.data.settings.showFeaturedServices"
+        ></app-checkbox>
+      </app-panel>
+
+      <!-- Star ratingF -->
+      <app-panel label="Star rating" i18n-label="@@online-booking.starRating">
+        <app-checkbox
+          label="Display star rating to members"
+          i18n-label="@@online-booking.displayStarRatingToMembers"
+          [(ngModel)]="pageObject.data.settings.showMemberStarRating"
+        ></app-checkbox>
+      </app-panel>
+    </div>
+  </div>
+</ion-content>
+<ion-footer  [onlyDisplayFor]="[roles.Owner]">
+  <ion-toolbar>
+    <ion-title>
+      <app-footer-controls
+        (onConfirm)="save()"
+        [showCancel]="false"
+        okText="Save"
+        i18n-okText="@@global.save"
+        [showDelete]="false"
+      ></app-footer-controls>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

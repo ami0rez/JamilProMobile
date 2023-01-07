@@ -1,0 +1,26 @@
+<div class="user-profile">
+  <ion-avatar (click)="editProfile()">
+    <img
+      alt="Silhouette of a person's head"
+      [src]="pageObject.data.userProfile.avatar"
+      (error)="pageObject.data.userProfile.avatar = defaultImage"
+    />
+  </ion-avatar>
+  <div class="user-profile-data">
+    <div class="user-name">
+      {{ pageObject.data.userProfile.prenom ?? "user name" }}
+    </div>
+    <div class="user-address">{{ pageObject.data.userProfile.email }}</div>
+  </div>
+  <!-- <ion-icon name="heart-outline"></ion-icon> -->
+  <div class="notification-icon-container">
+    <ion-badge
+      *ngIf="pageObject.data.notificationCount"
+      id="notifications-badge"
+      color="danger"
+      >{{ pageObject.data.notificationCount }}</ion-badge
+    >
+    <ion-icon name="notifications-outline" (click)="navigateToNotifications()">
+    </ion-icon>
+  </div>
+</div>

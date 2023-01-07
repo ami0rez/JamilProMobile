@@ -1,0 +1,34 @@
+<div
+  *ngIf="advance.salonNextStep"
+  class="simple-title"
+  i18n="@@complete-profile.completeYourProfile"
+>
+  Complete your profile
+</div>
+<div *ngIf="advance.salonNextStep" class="barber-profile">
+  <div class="barber-profile-row">
+    <ion-icon name="logo-stackoverflow"></ion-icon>
+    <div class="barber-profile-data">
+      <div class="barber-profile-title" i18n="@@complete-profile.shopDetails">
+        Shop Details
+      </div>
+      <div class="barber-profile-step">
+        {{ advance.salonNextStep }}
+      </div>
+    </div>
+    <span class="barber-profile-percent">{{ advance.salonPercent }}%</span>
+  </div>
+  <div *ngIf="false" class="barber-profile-row">
+    <ion-icon name="person-outline"></ion-icon>
+    <div class="barber-profile-data">
+      <div class="barber-profile-title" i18n="@@complete-profile.accountDetails">Account Details</div>
+      <div class="barber-profile-step">Upload Image</div>
+    </div>
+    <span class="barber-profile-percent">60%</span>
+  </div>
+  <div class="barber-profile-button" (click)="handleCompleteProfile()">
+    <span i18n="@@complete-profile.completeYourProfile"
+      >Complete your profile</span
+    ><ion-icon name="chevron-forward-outline"></ion-icon>
+  </div>
+</div>

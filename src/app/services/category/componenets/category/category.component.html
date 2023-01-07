@@ -1,0 +1,53 @@
+<ion-content [fullscreen]="true">
+  <div class="profile-header">
+    <ion-icon name="arrow-back-outline" (click)="goBack()"></ion-icon>
+    <span class="profile-header-title" i18n="@@category.category"
+      >Category</span
+    >
+  </div>
+  <div class="profile-body" [onlyEditFor]="[roles.Owner]">
+    <div class="page-editor-controls" [onlyDisplayFor]="[roles.Owner]">
+      <div class="first-controls">
+        <ion-button fill="clear" i18n="@@global.cancel" (click)="goBack()"
+          >Cancel</ion-button
+        >
+      </div>
+      <ion-button
+        class="save-button"
+        (click)="saveCategory()"
+        i18n="@@global.save"
+        >Save</ion-button
+      >
+    </div>
+    <div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@category.name">Name</legend>
+          <ion-input [(ngModel)]="pageObject.data.name" type="text"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@category.treatmentType">Treatment type</legend>
+          <app-treatment-types
+            [treatments]="pageObject.data.treatmentList"
+          ></app-treatment-types>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend i18n="@@category.description">Description</legend>
+          <ion-item>
+            <ion-textarea
+              [(ngModel)]="pageObject.data.description"
+              placeholder="Description"
+              i18n-placeholder="@@category.description"
+              [autoGrow]="true"
+            >
+            </ion-textarea>
+          </ion-item>
+        </fieldset>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

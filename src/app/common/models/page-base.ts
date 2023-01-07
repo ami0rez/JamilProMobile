@@ -5,15 +5,19 @@ import { UserConfigUtils } from '../utils/user-config-utils';
 
 export class PageBase {
   protected readonly appConstants = Constants;
-  protected readonly userConfig: UserConfig;
+  protected userConfig: UserConfig;
 
   roles = Roles;
 
   constructor() {
-    this.userConfig = UserConfigUtils.getUserConfig();
+    UserConfigUtils.getUserConfig().then(data => {
+      this.userConfig = data
+    }).catch(error => {
+      console.log('error loading user config: '+ JSON.stringify(error));
+    });
   }
 
-  updateConfig() {
-    UserConfigUtils.saveUserConfig(this.userConfig);
+  async updateConfig() {
+    await UserConfigUtils.saveUserConfig(this.userConfig);
   }
 }

@@ -1,0 +1,47 @@
+<ion-content>
+  <app-page-header
+    i18n-title="@@member-profile.profile"
+    title="Profile"
+  ></app-page-header>
+  <div class="member-profile">
+    <div class="profile-image">
+      <ion-avatar>
+        <img alt="Profile Image" [src]="pageObject.base64Image" />
+        <ion-icon
+          (click)="pickImage()"
+          class="profile-image-picker"
+          name="camera-outline"
+        ></ion-icon>
+      </ion-avatar>
+    </div>
+    <div>
+      <app-input
+        label="First Name"
+        i18n-label="@@signup.firstName"
+        [(ngModel)]="pageObject.data.profile.firstName"
+      ></app-input>
+      <app-input
+        label="Last Name"
+        i18n-label="@@signup.lastName"
+        [(ngModel)]="pageObject.data.profile.lastName"
+      ></app-input>
+      <app-input
+        label="Phone Number"
+        i18n-label="@@signup.phoneNumber"
+        [(ngModel)]="pageObject.data.profile.phoneNumber"
+      ></app-input>
+      <app-input
+        label="Email"
+        i18n-label="@@signup.email"
+        [(ngModel)]="pageObject.data.profile.email"
+      ></app-input>
+    </div>
+  </div>
+</ion-content>
+<app-footer-controls
+  (onConfirm)="save()"
+  [showCancel]="false"
+  [showDelete]="false"
+  okText="Save"
+  i18n-okText="@@global.save"
+></app-footer-controls>

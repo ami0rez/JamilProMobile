@@ -1,0 +1,19 @@
+<ion-content>
+  <div class="service-body">
+    <app-page-header
+      i18n-title="@@bank-account.bankAccounts"
+      title="Bank accounts"
+    ></app-page-header>
+    <ion-list lines="none">
+      <ion-item
+        (click)="editBankAccount(account)"
+        *ngFor="let account of pageObject.data.bankAccountList"
+      >
+        <app-bank-account-item
+        (onChange)="changeDefaultAccount(account)"
+        [account]="account"></app-bank-account-item>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+<app-fab [items]="pageObject.controls"></app-fab>
