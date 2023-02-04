@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PageHeaderComponent implements OnInit {
   @Input()
-  defaultHref = '/';
+  defaultHref = '/home/dashboard';
 
   @Input()
   showBackIcon = true;

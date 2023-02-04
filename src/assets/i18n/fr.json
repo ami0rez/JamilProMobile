@@ -63,6 +63,7 @@
     "global.fillRequiredFields": "Veuillez entrer tous les champs requis",
     "global.fillSpeceficRequiredFields": "Veuillez entrer tous les champs requis: ",
     "global.messageReject": "rejet effectué avec succès.",
+    "global.badRefreshTokenRequest":"Mauvaise demande de jeton d'actualisation",
     "global.select": "Sélectionner ",
     "global.productTypeGroup": "Famille",
     "global.productTypeSubGroup": "Sous famille",
@@ -499,6 +500,7 @@
     "login.appNname": "PRAXIS",
     "login.username": "Utilisateur",
     "login.password": "Mot de passe",
+    "login.compteBloque": "Compte bloque",
     "login.ordonnateurSousOrdonnateur": "Ordonnateur/Sous ordonnateur",
     "login.buttonLogin": "Se connecter",
     "login.userNameError": "Nom d'utilisateur obligatoire",
@@ -555,6 +557,7 @@
     "register.createAccount": "Créer un compte",
     "register.verifyYourPhoneNumber": "Numéro de téléphone",
     "register.salon": "Salon",
+    "register.ads": "Publicités",
     "register.enterEmail": "Entrez l'e-mail",
     "register.enterEmailDesc": "Entrez un e-mail continuez en utilisant l'une des méthodes ci-dessous",
     "register.continue": "Continuer",
@@ -609,6 +612,11 @@
     "register.ratingsWebsite": "Site Web d'évaluation (par exemple, Capterra, Trustpilot)",
     "register.other": "Autre",
     "global.youMustSelectAnItem": "Vous devez sélectionner un élément",
+
+    "profile.firstName": "Prénom",
+    "profile.lastName": "Nom",
+    "profile.phoneNumber": "Numéro de téléphone",
+    "profile.email": "Email",
 
     "complete-profile.completeYourProfile": "Finir la création de ton profil",
     "complete-profile.shopDetails": "Détails de la boutique",
@@ -780,6 +788,15 @@
     "other-settings.historyDesc": "Gérer l'historique",
     "other-settings.subscriptions": "Abonnements",
     "other-settings.subscriptionsDesc": "Voire la liste des abonnements",
+
+    "user.invalidUserNameCombination":"Combinaison de nom d'utilisateur invalide",
+    "user.invalidUserNameFirstChar":"Nom d'utilisateur non valide Premier caractère",
+    "user.userRoleNotFound":"Rôle d'utilisateur introuvable",
+
+    "changer-mot-de-passe.oldPasswordIsWrong":"l'ancien mot de passe est incorrect",
+    "changer-mot-de-passe.errorChangePassword":"Erreur de changeement de mot de passe",
+    "changer-mot-de-passe.passwordFormatIsWrong":"Le format du mot de passe est incorrect",
+    "changer-mot-de-passe.changePasswordInvalidLogin":"Changer le mot de passe connexion invalide",
 
     "appointments.appointments": "Réservations",
     "appointments.appointmentDetails": "Details de réservations",

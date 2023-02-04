@@ -8,6 +8,7 @@ import { SalonProfileDto } from '../../salon-profile/models/salon-dto';
 import { BarberSalonPage } from '../../salon-profile/models/salon-page';
 import { SalonTimeDto, SalonTimeItemDto } from '../../salon-profile/models/salon-time';
 import { SalonService } from './salon.service';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

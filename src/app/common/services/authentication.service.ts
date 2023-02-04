@@ -5,7 +5,6 @@ import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserProfile } from '../models/user-profile';
 import { AuthenticationSettings } from '../models/authentication-settings';
-// import { AuthenticationResponse } from 'src/app/authentification/models/authentication-response';
 import { RefreshTokenResponse } from '../models/refresh-token-response';
 import { UserConfigUtils } from '../utils/user-config-utils';
 import { RoutesConstants } from '../constants/routes-constants';
@@ -27,8 +26,6 @@ export class AuthenticationService {
 
   userProfile: UserProfile;
 
-  
-
   constructor(private router: Router) {
     this.jwtHelper = new JwtHelperService();
   }
@@ -47,16 +44,18 @@ export class AuthenticationService {
     if (this.authSettings) {
       return this.authSettings;
     }
-    const jsonSettings = localStorage.getItem(this.authenticationSettingsKey);
-    this.authSettings = JSON.parse(jsonSettings);
-    return this.authSettings;
+    // const jsonSettings = localStorage.getItem(this.authenticationSettingsKey);
+    // this.authSettings = JSON.parse(jsonSettings);
+    return null;
   }
 
   /**
    *  @description Get authentication settings
    */
   public async loadAuthenticationSettings() {
-    this.authSettings = await StorageUtils.getItem(this.authenticationSettingsKey);
+    this.authSettings = await StorageUtils.getItem(
+      this.authenticationSettingsKey
+    );
   }
 
   /**
@@ -92,10 +91,7 @@ export class AuthenticationService {
       accessTokenType: response.accessTokenType,
       refreshToken: response.refreshToken,
     };
-    await StorageUtils.setItem(
-      this.authenticationSettingsKey,
-      JSON.stringify(authentication)
-    );
+    await StorageUtils.setItem(this.authenticationSettingsKey, authentication);
     this.authSettings = authentication;
     this.sendAuthenticatedNotification(response.profile);
     this.redirectToHome();
@@ -109,10 +105,7 @@ export class AuthenticationService {
       accessToken: response.accessToken,
       refreshToken: response.refreshToken,
     };
-    await StorageUtils.setItem(
-      this.authenticationSettingsKey,
-      JSON.stringify(authentication)
-    );
+    await StorageUtils.setItem(this.authenticationSettingsKey, authentication);
   }
 
   /**

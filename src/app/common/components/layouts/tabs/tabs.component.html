@@ -1,6 +1,6 @@
 <div class="tabs-header">
   <div
-    *ngFor="let tab of tabs; let index as i"
+    *ngFor="let tab of tabs; let i = index"
     (click)="selectTab(tab, i)"
     class="tabs-item {{ tab.active ? 'selected' : '' }}"
   >

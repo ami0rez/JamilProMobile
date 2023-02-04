@@ -1,6 +1,6 @@
 import { UserConfigUtils } from 'src/app/common/utils/user-config-utils';
 import { PageBase } from 'src/app/common/models/page-base';
-// import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { Component, OnInit } from '@angular/core';
 import { LoginPage } from '../../models/login-page';
 import { LoginManagerService } from '../../services/login-manager.service';
@@ -21,6 +21,11 @@ export class AuthComponentComponent extends PageBase implements OnInit {
     private httpRequestsService: HttpRequestsService
   ) {
     super();
+    // GoogleAuth.initialize({
+    //   clientId: '772374373898-qkfngn17t3tj3b314up142oqkv96bpic.apps.googleusercontent.com',
+    //   scopes: ['profile', 'email'],
+    //   grantOfflineAccess: true,
+    // });
   }
 
   async ngOnInit() {
@@ -48,8 +53,8 @@ export class AuthComponentComponent extends PageBase implements OnInit {
   }
 
   async googleSignIn() {
-    // let googleUser = await GoogleAuth.signIn();
-    // console.log(googleUser);
+    let googleUser = await GoogleAuth.signIn();
+    console.debug(googleUser);
     
     // const credential = auth.GoogleAuthProvider.credential(googleUser.authentication.idToken);
     // return this.afAuth.auth.signInAndRetrieveDataWithCredential(credential);

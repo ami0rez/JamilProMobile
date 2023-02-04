@@ -67,8 +67,6 @@ export class ErrorMessagesService {
   InvalidUserNameCombination = $localize`:@@user.invalidUserNameCombination:Le nom d’utilisateur ne peut contenir que des caractères alphanumériques, des points et des traits de soulignement`;
   InvalidUserNameFirstChar = $localize`:@@user.invalidUserNameFirstChar:Le premier caractère du nom d’utilisateur doit être un caractère alphabétique`;
   UserRoleNotFound = $localize`:@@user.userRoleNotFound:User role is invalid`;
-  UserRuoIsRequired = $localize`:@@user.userRuoIsRequired:User RUO is required`;
-  UserRuoNotFound = $localize`:@@user.userRuoNotFound:User RUO is invalid`;
 
   // Changer mot de passe
   ChangePasswordInvalidLogin = $localize`:@@changer-mot-de-passe.changePasswordInvalidLogin:Invalid login`;

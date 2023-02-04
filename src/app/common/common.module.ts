@@ -31,6 +31,9 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { OnlyEditForDirective } from './directives/only-owner-edit.directive';
 import { OnlyDisplayForDirective } from './directives/only-diplay-for.directive';
+import { ImageViewerComponent } from './components/layouts/image-viewer/image-viewer.component';
+import { ImageComponent } from './components/image/image.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,8 @@ import { OnlyDisplayForDirective } from './directives/only-diplay-for.directive'
     CheckboxListComponent,
     ModalMessageComponent,
     AvatarComponent,
+    ImageViewerComponent,
+    ImageComponent,
 
     OnlyEditForDirective,
     OnlyDisplayForDirective
@@ -69,6 +74,7 @@ import { OnlyDisplayForDirective } from './directives/only-diplay-for.directive'
     IonicModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    SwiperModule
   ],
   exports: [
     LabeledDateComponent,
@@ -96,6 +102,8 @@ import { OnlyDisplayForDirective } from './directives/only-diplay-for.directive'
     CheckboxListComponent,
     ModalMessageComponent,
     AvatarComponent,
+    ImageViewerComponent,
+    ImageComponent,
     
     OnlyEditForDirective,
     OnlyDisplayForDirective

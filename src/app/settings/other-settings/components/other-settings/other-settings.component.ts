@@ -1,3 +1,4 @@
+import { UserConfigUtils } from './../../../../common/utils/user-config-utils';
 import { Component, OnInit } from '@angular/core';
 import { RoutesConstants } from 'src/app/common/constants/routes-constants';
 import { PageBase } from 'src/app/common/models/page-base';
@@ -21,7 +22,8 @@ export class OtherSettingsComponent extends PageBase implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.userConfig = await UserConfigUtils.getUserConfig();
     this.memberSettingsManagerService.getOtherSettings(this.pageObject);
   }
 

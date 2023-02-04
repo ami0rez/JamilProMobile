@@ -2,11 +2,18 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  Input, Output
+  Input,
+  Output,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-//import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { Camera } from '@capacitor/camera';
+import {
+  CameraResultType,
+  CameraSource,
+  ImageOptions,
+} from '@capacitor/camera/dist/esm/definitions';
+
 import { NotificationService } from 'src/app/common/services/notification.service';
 
 @Component({
@@ -31,23 +38,17 @@ export class AvatarComponent implements ControlValueAccessor {
   @Output()
   change: EventEmitter<any> = new EventEmitter<any>();
 
-  //options: CameraOptions;
   onChange: any = () => {};
   onTouch: any = () => {};
   inputValue;
   displayedImage: string;
-  constructor(
-    //private camera: Camera,
-    private notificationService: NotificationService
-  ) {
-    // this.options = {
-    //   quality: 100,
-    //   destinationType: this.camera.DestinationType.DATA_URL,
-    //   mediaType: this.camera.MediaType.PICTURE,
-    //   sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-    //   saveToPhotoAlbum: false,
-    // };
-  }
+
+  options: ImageOptions = {
+    quality: 100,
+    source: CameraSource.Prompt,
+    resultType: CameraResultType.Base64,
+  };
+  constructor(private notificationService: NotificationService) {}
 
   set value(val) {
     this.inputValue = val;
@@ -80,15 +81,15 @@ export class AvatarComponent implements ControlValueAccessor {
    *  @description Pick image
    */
   pickImage() {
-    // this.camera.getPicture(this.options).then(
-    //   (imageData) => {
-    //     this.displayedImage = 'data:image/jpeg;base64,' + imageData;
-    //     this.value = imageData;
-    //   },
-    //   (err) => {
-    //     this.notificationService.showError(err);
-    //   }
-    // );
+    Camera.getPhoto(this.options).then(
+      (imageData) => {
+        this.displayedImage = 'data:image/jpeg;base64,' + imageData.base64String;
+        this.value = imageData.base64String;
+      },
+      (err) => {
+        this.notificationService.showError(err);
+      }
+    );
   }
 
   /*

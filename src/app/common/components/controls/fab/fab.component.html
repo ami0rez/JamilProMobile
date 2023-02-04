@@ -2,8 +2,8 @@
   <ion-fab-button>
     <ion-icon [name]="icon"></ion-icon>
   </ion-fab-button>
-  <ion-fab-list *ngFor="let item of items" side="top">
-    <ion-fab-button (click)="handleItemClick(item)" class="text-item">
+  <ion-fab-list  side="top">
+    <ion-fab-button *ngFor="let item of items" (click)="handleItemClick(item)" class="text-item">
       <ion-icon [name]="item.icon"></ion-icon><span>{{ item.label }}</span>
     </ion-fab-button>
   </ion-fab-list>

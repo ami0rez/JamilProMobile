@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+    <string name="server_client_id">772374373898-qkfngn17t3tj3b314up142oqkv96bpic.apps.googleusercontent.com</string>
     <string name="app_name">jamil2</string>
     <string name="title_activity_main">jamil2</string>
     <string name="package_name">io.ionic.starter</string>

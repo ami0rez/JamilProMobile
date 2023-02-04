@@ -28,7 +28,6 @@ export class ErrorMessages {
   static readonly InvalidUserNameCombination = $localize`:@@user.invalidUserNameCombination:Le nom d’utilisateur ne peut contenir que des caractères alphanumériques, des points et des traits de soulignement`;
   static readonly InvalidUserNameFirstChar = $localize`:@@user.invalidUserNameFirstChar:Le premier caractère du nom d’utilisateur doit être un caractère alphabétique`;
   static readonly UserRoleNotFound = $localize`:@@user.userRoleNotFound:User role is invalid`;
-  static readonly UserRuoIsRequired = $localize`:@@user.userRuoIsRequired:User RUO is required`;
   static readonly UserRuoNotFound = $localize`:@@user.userRuoNotFound:User RUO is invalid`;
 
   // Changer mot de passe

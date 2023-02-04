@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberProfilePage } from '../../models/member-profile-page';
-// import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+
+import { Camera } from '@capacitor/camera';
+import { CameraResultType, CameraSource, ImageOptions } from '@capacitor/camera/dist/esm/definitions';
+
 import { NotificationService } from 'src/app/common/services/notification.service';
 import { MemberProfileManagerService } from '../../services/member-profile-manager.service';
 
@@ -11,13 +14,11 @@ import { MemberProfileManagerService } from '../../services/member-profile-manag
 })
 export class MemberProfileComponent implements OnInit {
   pageObject: MemberProfilePage = new MemberProfilePage();
-  // options: CameraOptions = {
-  //   quality: 100,
-  //   destinationType: this.camera.DestinationType.DATA_URL,
-  //   mediaType: this.camera.MediaType.PICTURE,
-  //   sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-  //   saveToPhotoAlbum: false,
-  // };
+  options: ImageOptions = {
+    quality: 100,
+    source: CameraSource.Prompt,
+    resultType: CameraResultType.Base64,
+  };
   constructor(
     // private camera: Camera,
     private notificationService: NotificationService,
@@ -32,16 +33,16 @@ export class MemberProfileComponent implements OnInit {
   *  @description Pick image
   */
   pickImage() {
-    // this.camera.getPicture(this.options).then(
-    //   (imageData) => {
-    //     let base64Image = 'data:image/jpeg;base64,' + imageData;
-    //     this.pageObject.data.profile.image = imageData;
-    //     this.pageObject.base64Image = base64Image;
-    //   },
-    //   (err) => {
-    //     this.notificationService.showError(err);
-    //   }
-    // );
+    Camera.getPhoto(this.options).then(
+      (imageData) => {
+        let base64Image = 'data:image/jpeg;base64,' + imageData.base64String;
+        this.pageObject.data.profile.image = imageData.base64String;
+        this.pageObject.base64Image = base64Image;
+      },
+      (err) => {
+        this.notificationService.showError(err);
+      }
+    );
   }
 
   /*

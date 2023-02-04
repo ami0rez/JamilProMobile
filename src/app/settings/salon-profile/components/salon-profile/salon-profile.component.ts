@@ -1,12 +1,15 @@
-import { PageBase } from './../../../../common/models/page-base';
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
-// import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { PageBase } from './../../../../common/models/page-base';
 
-import { BarberSalonPage } from '../../models/salon-page';
+import { Camera } from '@capacitor/camera';
+import { CameraResultType, CameraSource, ImageOptions } from '@capacitor/camera/dist/esm/definitions';
+
 import { NotificationService } from 'src/app/common/services/notification.service';
 import { SalonManagerService } from 'src/app/settings/common/services/salon-manager.service';
+import { BarberSalonPage } from '../../models/salon-page';
 
 @Component({
   selector: 'app-salon-profile',
@@ -15,23 +18,25 @@ import { SalonManagerService } from 'src/app/settings/common/services/salon-mana
 })
 export class BarberShopProfileComponent extends PageBase implements OnInit {
   pageObject: BarberSalonPage = new BarberSalonPage();
-  // options: CameraOptions = {
-  //   quality: 100,
-  //   destinationType: this.camera.DestinationType.DATA_URL,
-  //   mediaType: this.camera.MediaType.PICTURE,
-  //   sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-  //   saveToPhotoAlbum: false,
-  // };
+  options: ImageOptions = {
+    quality: 100,
+    source: CameraSource.Prompt,
+    resultType: CameraResultType.Base64,
+  };
   constructor(
     // private camera: Camera,
     private location: Location,
     private barberManagerService: SalonManagerService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public platform: Platform
   ) {
     super();
   }
 
   async ngOnInit() {
+    // if(this.platform.is("android") || this.platform.is("ios") ){
+    //   Camera.requestPermissions({permissions: ['photos']})
+    // }
     await this.barberManagerService.getSalon(this.pageObject);
   }
 
@@ -43,15 +48,15 @@ export class BarberShopProfileComponent extends PageBase implements OnInit {
   }
 
   pickImage() {
-    // this.camera.getPicture(this.options).then(
-    //   (imageData) => {
-    //     let base64Image = 'data:image/jpeg;base64,' + imageData;
-    //     this.pageObject.data.image = imageData;
-    //     this.pageObject.base64Image = base64Image;
-    //   },
-    //   (err) => {
-    //     this.notificationService.showError(err);
-    //   }
-    // );
+    Camera.getPhoto(this.options).then(
+      (imageData) => {
+        let base64Image = 'data:image/jpeg;base64,' + imageData.base64String;
+        this.pageObject.data.image = imageData.base64String;
+        this.pageObject.base64Image = base64Image;
+      },
+      (err) => {
+        this.notificationService.showError(err);
+      }
+    );
   }
 }

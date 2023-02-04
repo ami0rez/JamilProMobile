@@ -26,6 +26,7 @@ export class DashboardComponent extends PageBase implements OnInit {
   }
 
   async ngOnInit() {
+    await this.loadConfig();
     PaginationUtils.initializeRequest(this.pageObject.request);
     this.dashboardManagerService.getAdvance(this.pageObject);
     this.dashboardManagerService.getTodaysAppointments(this.pageObject);

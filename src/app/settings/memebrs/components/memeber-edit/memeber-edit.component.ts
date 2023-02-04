@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-// import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
-import { NotificationService } from 'src/app/common/services/notification.service';
-
 import { MembersPage } from '../../models/members-page';
 import { MembersManagerService } from '../../services/members-manager.service';
 
@@ -14,16 +11,8 @@ import { MembersManagerService } from '../../services/members-manager.service';
 })
 export class MemeberEditComponent implements OnInit {
   pageObject = new MembersPage();
-  // options: CameraOptions = {
-  //   quality: 100,
-  //   destinationType: this.camera.DestinationType.DATA_URL,
-  //   mediaType: this.camera.MediaType.PICTURE,
-  //   sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-  //   saveToPhotoAlbum: false,
-  // };
+
   constructor(
-    // private camera: Camera,
-    private notificationService: NotificationService,
     private activatedRoute: ActivatedRoute,
     private memebersManagerService: MembersManagerService
   ) {}
@@ -38,22 +27,6 @@ export class MemeberEditComponent implements OnInit {
         this.pageObject.editPageTitle = $localize`:@@team.addMember:Add a member`;
       }
     });
-  }
-
-  /*
-   *  @description Pick image
-   */
-  pickImage() {
-    // this.camera.getPicture(this.options).then(
-    //   (imageData) => {
-    //     let base64Image = 'data:image/jpeg;base64,' + imageData;
-    //     this.pageObject.data.member.image = imageData;
-    //     this.pageObject.base64Image = base64Image;
-    //   },
-    //   (err) => {
-    //     this.notificationService.showError(err);
-    //   }
-    // );
   }
 
   saveMember() {}

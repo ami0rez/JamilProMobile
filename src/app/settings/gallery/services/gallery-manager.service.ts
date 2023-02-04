@@ -1,10 +1,13 @@
-import { GalleryItem } from './../models/gallery-item';
 import { GalleryService } from './gallery.service';
 import { GalleryPage } from './../models/gallery-page';
 import { Injectable } from '@angular/core';
 
-// import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
-// import { VideoPlayer } from '@awesome-cordova-plugins/video-player/ngx';
+import { Camera } from '@capacitor/camera';
+import {
+  CameraResultType,
+  CameraSource,
+  ImageOptions,
+} from '@capacitor/camera/dist/esm/definitions';
 
 import { NotificationService } from 'src/app/common/services/notification.service';
 import { AppConfigService } from 'src/app/common/services/app-config-service';
@@ -14,9 +17,7 @@ import { AppConfigService } from 'src/app/common/services/app-config-service';
 })
 export class GalleryManagerService {
   constructor(
-    // private readonly camera: Camera,
     private readonly notificationService: NotificationService,
-    // private readonly videoPlayer: VideoPlayer,
     private readonly galleryService: GalleryService,
     private appConfigService: AppConfigService
   ) {}
@@ -25,12 +26,12 @@ export class GalleryManagerService {
     pageObject.controls = [
       {
         label: $localize`:@@gallery.addImage:Add Image`,
-        icon: 'add',
+        icon: 'image',
         onClick: () => this.pickImage(pageObject),
       },
       {
         label: $localize`:@@gallery.addVideo:Add Video`,
-        icon: 'heart',
+        icon: 'videocam',
         onClick: () => this.pickVideo(pageObject),
       },
     ];
@@ -57,28 +58,26 @@ export class GalleryManagerService {
   }
 
   pickImage(pageObject: GalleryPage) {
-    // const options: CameraOptions = {
-    //   quality: 100,
-    //   destinationType: this.camera.DestinationType.DATA_URL,
-    //   mediaType: this.camera.MediaType.PICTURE,
-    //   sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-    //   saveToPhotoAlbum: false,
-    // };
-    // this.camera.getPicture(options).then(
-    //   async (imageData) => {
-    //     console.log('saving');
-    //     var query = {
-    //       base64Image: imageData,
-    //     };
-    //     await this.galleryService.saveGalleryImage(query).toPromise();
-    //     console.log('saved');
-    //     let base64Image = 'data:image/jpeg;base64,' + imageData;
-    //     pageObject.data.gallery.images.push(base64Image);
-    //   },
-    //   (err) => {
-    //     this.notificationService.showError(err);
-    //   }
-    // );
+    const options: ImageOptions = {
+      quality: 100,
+      source: CameraSource.Prompt,
+      resultType: CameraResultType.Base64,
+    };
+    Camera.getPhoto(options).then(
+      async (imageData) => {
+        console.log(imageData);
+        var query = {
+          base64Image: imageData.base64String,
+        };
+        await this.galleryService.saveGalleryImage(query).toPromise();
+        console.log('saved');
+        let base64Image = 'data:image/jpeg;base64,' + imageData.base64String;
+        pageObject.data.gallery.images.push(base64Image);
+      },
+      (err) => {
+        this.notificationService.showError(err);
+      }
+    );
   }
 
   pickVideo(pageObject: GalleryPage) {

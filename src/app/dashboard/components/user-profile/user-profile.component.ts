@@ -1,8 +1,6 @@
 import { TranslationService } from 'src/app/common/services/translation.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
-// import { Badge } from '@awesome-cordova-plugins/badge/ngx';
 
 import { RoutesConstants } from 'src/app/common/constants/routes-constants';
 import { UserProfile } from 'src/app/common/models/user-profile';
@@ -24,8 +22,6 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private readonly notificationsHeartbeatService: NotificationsHeartbeatService,
     private readonly notificationsManagerService: NotificationsManagerService,
-    // private localNotifications: LocalNotifications,
-    // private badge: Badge,
     private translationService: TranslationService
   ) {}
 
@@ -36,27 +32,14 @@ export class UserProfileComponent implements OnInit {
     });
     this.notificationsHeartbeatService.onNotificationNumberChange((val) => {
       this.pageObject.data.notificationCount = val;
-      // this.badge.set(val);
-      // this.localNotifications.schedule([
-      //   {
-      //     id: 1,
-      //     title: $localize`:@@notification.newNotifications:New notifications2`,
-      //     text: this.translationService.translateWithVariable(
-      //       $localize`:@@notification.newNotificationsBody:You have {0} new notifications, you might want to check them to stay updated`,
-      //       val
-      //     ),
-      //     foreground: true,
-      //   },
-      // ]);
     });
     this.notificationsHeartbeatService.onNotificationCountCall(async () => {
-      //var count = await this.notificationsManagerService.getNotificationCount();
       return 0;
     });
     this.notificationsHeartbeatService.updateNotificationCount();
   }
   refreshData(value: UserProfile) {
-    this.pageObject;
+    this.pageObject.data.userProfile = value;
   }
   navigateToNotifications() {
     this.router.navigate([RoutesConstants.notificationList]);

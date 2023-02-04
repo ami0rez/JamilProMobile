@@ -35,9 +35,8 @@ export class UserConfigUtils {
   static async getUserConfig(): Promise<UserConfig> {
     const config = await StorageUtils.getItem(this.configKey);
     try {
-      const configObj = JSON.parse(config);
-      if (configObj) {
-        return configObj;
+      if (config) {
+        return config;
       } else {
         return this.initUserConfig();
       }
@@ -51,10 +50,10 @@ export class UserConfigUtils {
    */
   static async saveUserConfig(config: UserConfig) {
     try {
-      var configStr = JSON.stringify(config);
+      var configStr = config;
       await StorageUtils.setItem(this.configKey, configStr);
     } catch (error) {
-      var configStr = JSON.stringify(this.getInitUserConfig());
+      var configStr = this.getInitUserConfig();
       await StorageUtils.setItem(this.configKey, configStr);
     }
   }

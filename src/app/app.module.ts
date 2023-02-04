@@ -1,6 +1,8 @@
 import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -14,6 +16,7 @@ import { CustomHttpInterceptor } from './common/services/custom-http-interceptor
 import { AppConfigService } from './common/services/app-config-service';
 import { AuthComponentComponent } from './authentification/components/auth-component/auth-component.component';
 
+registerLocaleData(localeFr, 'fr');
 @NgModule({
   declarations: [AppComponent, AuthComponentComponent],
   imports: [

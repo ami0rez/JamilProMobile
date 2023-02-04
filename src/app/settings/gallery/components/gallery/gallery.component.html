@@ -5,15 +5,16 @@
   ></app-page-header>
   <app-tabs>
     <app-tab i18n-legend="@@gallery.photos" legend="Photos">
-      <div class="image-list">
-        <ion-img
-          *ngFor="let imageSrc of pageObject.data.gallery.images"
-          [src]="imageSrc"
-        ></ion-img>
-      </div>
+      <app-image-viewer
+        class="image-list"
+        [images]="pageObject.data.gallery.images"
+      >
+      </app-image-viewer>
     </app-tab>
     <app-tab i18n-legend="@@gallery.videos" legend="Videos"> </app-tab>
   </app-tabs>
 </ion-content>
 <app-fab
-[onlyDisplayFor]="[roles.Owner]" [items]="pageObject.controls"></app-fab>
+  [onlyDisplayFor]="[roles.Owner]"
+  [items]="pageObject.controls"
+></app-fab>
