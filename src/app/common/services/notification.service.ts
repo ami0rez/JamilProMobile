@@ -16,6 +16,16 @@ export class NotificationService {
   async showSaveSuccess() {
     await this.showSuccess(this.saveSuccessMessage);
   }
+  async showUpdateTemplateSuccess(entity: string) {
+    if (!entity) {
+      return;
+    }
+    let message = $localize`:@@modificationTemplateSucces:Modification of {0} have been done successfully`
+    message = message.replace(/{(\d+)}/g, (match, num) => {
+      return entity;
+    });
+    await this.showSuccess(message);
+  }
   async showDeleteSuccess() {
     await this.showSuccess(this.deleteSuccessMessage);
   }

@@ -1,11 +1,11 @@
-<ion-item *ngIf="showModalData" lines="none" class="ion-item">
-  <fieldset id="open-modal-{{ id }}" class="input-item address-input">
-    <legend *ngIf="showLabel">{{ label }}</legend>
-    <div expand="block" class="fake-input">
-      {{ address?.designation }}
-    </div>
-  </fieldset>
-</ion-item>
+<app-textarea
+  id="open-modal-{{ id }}"
+  *ngIf="showModalData"
+  [showLabel]="showLabel"
+  [label]="label"
+  [ngModel]="address?.designation"
+  [readonly]="true"
+></app-textarea>
 <ion-content class="ion-padding">
   <ion-modal
     [isOpen]="isModalOpen"
@@ -22,11 +22,12 @@
             title="Address"
           ></app-page-header>
           <div>
-            <app-input
+            <app-textarea
               label="Designation"
               i18n-label="@@global.address.designation"
               [(ngModel)]="address.designation"
-            ></app-input>
+              [readonly]="true"
+            ></app-textarea>
             <!-- <div id="map_canvas">
               <button ion-button (click)="onButtonClick($event)">Start Demo</button>
             </div> -->
@@ -71,6 +72,7 @@
               i18n-label="@@global.address.directions"
               [(ngModel)]="address.directions"
               (change)="handleAddressChange()"
+              [autoGrow]="true"
             ></app-textarea>
           </div>
         </div>

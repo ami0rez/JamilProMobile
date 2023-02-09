@@ -21,10 +21,10 @@ export class StarterComponent extends PageBase implements OnInit {
   }
 
   async ngOnInit() {
-    // await this.starterManagerService.getStories(
-    //   this.pageObject,
-    //   this.userConfig.language
-    // );
+    await this.starterManagerService.getStories(
+      this.pageObject,
+      this.userConfig.language
+    );
     this.starterManagerService.startStoryLoop(this.pageObject, this.swiper);
   }
 

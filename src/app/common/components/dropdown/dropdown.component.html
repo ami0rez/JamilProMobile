@@ -1,8 +1,7 @@
-<ion-item lines="none" class="ion-item">
-  <fieldset class="input-item dropdown">
-    <legend>{{ label }}</legend>
+<ion-item lines="none">
+  <div class="input-item dropdown">
+    <ion-label position="stacked">{{ label }}</ion-label>
     <ion-list class="input-content">
-      <ion-item>
         <ion-select
           [(ngModel)]="inputValue"
           [placeholder]="placeholder"
@@ -20,7 +19,31 @@
             >{{ item.label }}</ion-select-option
           >
         </ion-select>
-      </ion-item>
     </ion-list>
-  </fieldset>
+  </div>
 </ion-item>
+
+<!-- <ion-item lines="none" class="ion-item" class="input-item dropdown">
+  <ion-label position="stacked" *ngIf="showLabel">
+    {{ label }}
+  </ion-label>
+  <div class="input-content">
+    <ion-select
+          [(ngModel)]="inputValue"
+          [placeholder]="placeholder"
+          [cancelText]="cancelText"
+          [okText]="okText"
+          [disabled]="disabled"
+          [interface]="interface"
+          [interfaceOptions]="interfaceOptions"
+          [multiple]="multiple"
+          (ionChange)="handleValueChange()"
+        >
+          <ion-select-option
+            *ngFor="let item of options"
+            [value]="item.value"
+            >{{ item.label }}</ion-select-option
+          >
+        </ion-select>
+  </div>
+</ion-item> -->

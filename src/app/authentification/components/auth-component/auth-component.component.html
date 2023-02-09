@@ -1,34 +1,29 @@
 <ion-content [fullscreen]="true">
   <!-- Login Page -->
-  <div class="container" *ngIf="pageObject.screen == 'signin'">
+  <div class="login-container" *ngIf="pageObject.screen == 'signin'">
     <ion-img class="login-image" src="../../assets/login.png"></ion-img>
-    <div>
-      <ion-item lines="none" class="ion-item">
-        <fieldset class="input-item">
-          <legend i18n="@@signin.email">Email</legend>
-          <ion-input
-            [(ngModel)]="pageObject.data.email"
-            type="email"
-            placeholder="name@domain.com"
-          ></ion-input>
-        </fieldset>
-      </ion-item>
-      <ion-item lines="none" class="ion-item">
-        <fieldset class="input-item">
-          <legend i18n="@@signin.password">Password</legend>
-          <ion-input
-            [(ngModel)]="pageObject.data.password"
-            type="password"
-            placeholder="*******"
-          ></ion-input>
-        </fieldset>
-      </ion-item>
+    <div class="login-inputs">
+      <span class="login-phrase" i18n="@@login.loginToAccount">Login to your account</span>
+      <app-input
+        label="Email"
+        i18n-label="@@signin.email"
+        [(ngModel)]="pageObject.data.email"
+        type="email"
+        placeholder="name@domain.com"
+      ></app-input>
+      <app-input
+        label="Password"
+        i18n-label="@@signin.password"
+        [(ngModel)]="pageObject.data.password"
+        type="password"
+        placeholder="*******"
+      ></app-input>
       <p class="forget-text">
         <a (click)="change('forget')" i18n="@@signin.forgotPassword"
           >Forgot Password?</a
         >
       </p>
-      <ion-button class="login-button mb-40" (click)="login()" expand="block"
+      <ion-button class="login-button" (click)="login()" expand="block"
         >Login</ion-button
       >
       <div class="devider">
@@ -37,14 +32,16 @@
         >
       </div>
       <div class="auth-controls mb-5">
-        <ion-icon name="logo-facebook"></ion-icon>
-        <ion-icon name="logo-google" (click)="googleSignIn()"></ion-icon>
-        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-icon name="logo-facebook" class="logo-facebook"></ion-icon>
+        <ion-icon name="logo-google" class="logo-google" (click)="googleSignIn()"></ion-icon>
+        <ion-icon name="logo-twitter" class="logo-twitter"></ion-icon>
       </div>
       <p class="signup-text">
-        <span i18n="@@signin.amNewMember"
-          >I'm a new user</span
-        >&nbsp;<a i18n="@@signin.signUp" (click)="signup()">Sign Up?</a>
+        <span i18n="@@signin.amNewMember">I'm a new user</span>&nbsp;<a
+          i18n="@@signin.signUp"
+          (click)="signup()"
+          >Sign Up?</a
+        >
       </p>
     </div>
   </div>
@@ -77,8 +74,3 @@
     </p>
   </div>
 </ion-content>
-<!-- <ion-footer color="white">
-  <ion-toolbar>
-    <p class="copyright">Created with ❤️ by&nbsp;<a>Inventive</a></p>
-  </ion-toolbar>
-</ion-footer> -->

@@ -1,8 +1,7 @@
-<ion-item lines="none" class="ion-item">
-  <fieldset class="input-item">
-    <legend *ngIf="showLabel">
+<ion-item lines="none" class="ion-item" class="input-item">
+    <ion-label position="stacked" *ngIf="showLabel">
       {{ label }}
-    </legend>
+    </ion-label>
     <div class="input-content">
       <ion-input
         [(ngModel)]="value"
@@ -20,5 +19,4 @@
       ></ion-input>
       <div *ngIf="suffix" class="input-suffix">{{suffix}}</div>
     </div>
-  </fieldset>
 </ion-item>

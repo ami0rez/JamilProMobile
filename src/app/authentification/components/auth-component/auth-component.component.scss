@@ -1,7 +1,4 @@
-.login-image{
-    height: 200px;
-    padding: 10px;
-}
+
 .login-image.min{
   height: 150px;
   padding: 10px;
@@ -34,14 +31,7 @@
     padding-right: 20px;
     margin-top: 4px;
 }
-.login-button{
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 40px;
-    --border-radius: 5px;
-    margin-top: 30px;
-    --box-shadow: none;
-}
+
 .auth-controls{
   display: flex;
   flex-direction: row;
@@ -60,14 +50,6 @@
     margin: auto;
     font-size: 1.5em;
   }
-}
-.signup-text{
-    a{
-        text-decoration: none;
-        color: var(--ion-color-primary);
-    }
-    padding-right: 20px;
-    text-align: end;
 }
 ion-footer {
     display: block;

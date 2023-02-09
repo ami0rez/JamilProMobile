@@ -2,6 +2,7 @@
   <ion-avatar>
     <img alt="Profile Image" [src]="displayedImage" (error)="onImageDisplayError()" />
     <ion-icon
+      *ngIf="editable"
       (click)="pickImage()"
       class="profile-image-picker"
       name="camera-outline"

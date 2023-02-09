@@ -1,8 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-button id="open-modal" expand="block" i18n="@@global.open">Open</ion-button>
-  </ion-toolbar>
-</ion-header>
+<app-input
+  id="open-modal"
+  label="Shop Time"
+  i18n-label="@@barberShop.shopTime"
+  ngModel="View shop time"
+  [readonly]="true"
+></app-input>
 <ion-content class="ion-padding">
   <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
     <ng-template>

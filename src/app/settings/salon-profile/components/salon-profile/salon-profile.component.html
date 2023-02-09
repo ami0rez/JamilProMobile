@@ -5,14 +5,14 @@
   ></app-page-header>
   <div class="profile-body" [onlyEditFor]="[roles.Owner]">
     <div class="profile-image">
-      <ion-avatar>
-        <img alt="Profile Image" [src]="pageObject.base64Image" />
+      <div class="avatar-container">
+        <ion-img alt="Profile Image" [src]="pageObject.base64Image"></ion-img>
         <ion-icon
           (click)="pickImage()"
           class="profile-image-picker"
           name="camera-outline"
         ></ion-icon>
-      </ion-avatar>
+      </div>
     </div>
     <div>
       <app-input
@@ -44,14 +44,7 @@
         [(ngModel)]="pageObject.data.email"
       >
       </app-input>
-      <ion-item lines="none" class="ion-item">
-        <fieldset class="input-item">
-          <legend i18n="@@barberShop.shopTime">Shop Time</legend>
-          <app-salon-time-editor
-            [pageObject]="pageObject"
-          ></app-salon-time-editor>
-        </fieldset>
-      </ion-item>
+      <app-salon-time-editor [pageObject]="pageObject"></app-salon-time-editor>
       <app-dropdown
         label="Salon Type"
         i18n-label="@@barberShop.salonType"

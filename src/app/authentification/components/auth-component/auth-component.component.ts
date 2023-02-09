@@ -29,9 +29,9 @@ export class AuthComponentComponent extends PageBase implements OnInit {
   }
 
   async ngOnInit() {
-    if(!(await UserConfigUtils.getUserConfig())?.visitedStarter){
-      this.loginManagerService.redirectToStarter();
-    }
+    // if(!(await UserConfigUtils.getUserConfig())?.visitedStarter){
+    //   this.loginManagerService.redirectToStarter();
+    // }
   }
 
   change(event) {

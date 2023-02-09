@@ -28,7 +28,16 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@font-face {
+  font-family: "Lato"; //This is what we are going to call
+  src: url("./assets/fonts/Lato/Lato-Regular.ttf");
+}
+
+* {
+  font-family: "Lato";
+}
 body {
+  font-family: "Lato" !important;
   width: 100%;
   height: 100%;
   background-color: #ebebeb;
@@ -139,22 +148,32 @@ ion-list-header {
   font-weight: bold;
 }
 
+fieldset.input-item{
+border-radius: 6px;
+}
 .input-item {
-  padding-left: 10px;
   width: 100%;
-  border-radius: 5px;
-  border: 2px solid #e2e2e2;
-  background-color: transparent;
   padding-bottom: 0;
+  font-size: 1.2em;
 
-  legend {
+  ion-label {
+    font-size: 1.2em !important;
     color: #20304a;
+    margin-bottom: 8px !important;
   }
   .input-content {
-    margin-top: -10px;
     display: flex;
     flex-direction: row;
-
+    width: 100%;
+    ion-input, ion-textarea, ion-select {
+      --padding-bottom: 8px;
+      --padding-end: 8px;
+      --padding-start: 8px;
+      --padding-top: 8px;
+      background-color: #f0f0f0;
+      width: 100%;
+      border-radius: 10px;
+    }
     .input-suffix {
       margin-top: -4px;
       display: flex;
@@ -169,45 +188,42 @@ ion-list-header {
   }
 }
 
-.input-item.dropdown {
-  padding-left: 10px;
-  width: 100%;
-  border-radius: 5px;
-  border: 2px solid #e2e2e2;
-  background-color: transparent;
-  padding-bottom: 0;
+// .input-item.dropdown {
+//   width: 100%;
+//   background-color: transparent;
+//   padding-bottom: 0;
 
-  legend {
-    color: #20304a;
-    z-index: 10;
-  }
-  .input-content {
-    margin-top: -7px;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    z-index: -10;
-    display: flex;
-    flex-direction: row;
-    ion-item {
-      flex-grow: 1;
-      ion-select {
-        width: 100%;
-      }
-    }
-    .input-suffix {
-      margin-top: -4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-left: #00000029 solid 2px;
-      padding-left: 10px;
-      font-weight: bold;
-      color: #000000aa;
-      min-width: 50px;
-    }
-  }
-}
+//   legend {
+//     color: #20304a;
+//     z-index: 10;
+//   }
+//   .input-content {
+//     margin-top: -7px;
+//     padding: 0;
+//     display: flex;
+//     flex-direction: row;
+//     z-index: -10;
+//     display: flex;
+//     flex-direction: row;
+//     ion-item {
+//       flex-grow: 1;
+//       ion-select {
+//         width: 100%;
+//       }
+//     }
+//     .input-suffix {
+//       margin-top: -4px;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       border-left: #00000029 solid 2px;
+//       padding-left: 10px;
+//       font-weight: bold;
+//       color: #000000aa;
+//       min-width: 50px;
+//     }
+//   }
+// }
 
 .ion-item {
   margin-top: 20px;
@@ -263,7 +279,6 @@ ion-list-header {
   justify-content: center;
   padding: 10px;
   margin-bottom: 15px;
-  margin-top: 5px;
   position: relative;
 
   ion-back-button {
@@ -370,16 +385,16 @@ ion-modal.image-slider-modal {
     align-items: center;
     justify-content: center;
     font-size: 1.55em;
-    ion-icon{
+    ion-icon {
       border: solid thin #fff;
       padding: 7px;
       border-radius: 20px;
     }
-    ion-icon:active{
+    ion-icon:active {
       background-color: #ffffff55;
     }
   }
-  .image-viewer-close{
+  .image-viewer-close {
     position: absolute;
     color: #ffffff;
     top: 15px;
@@ -1134,7 +1149,7 @@ app-barber-balance {
 
   .barber-balance {
     height: 120px;
-    background-color: #0474ba;
+    background-color: #807bf1;
     margin: 5px 10px;
     border-radius: 5px;
     display: flex;
@@ -1229,33 +1244,38 @@ app-barber-profile {
     }
   }
 }
-
+.shaped-container {
+  background-color: #ffffff;
+  border-top: solid 6px #f27b93;
+  border-radius: 0% 40% 100% 100% / 0% 100% 0% 0%;
+  .top-right-rounded {
+    border-radius: 0% 40% 100% 100% / 0% 100% 0% 0%;
+  }
+}
 app-salon-profile {
   .profile-body {
     margin-bottom: 100px;
-
     .profile-image {
-      height: 120px;
+      height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
-
-      ion-avatar {
-        height: 120px;
-        width: 120px;
-        position: relative;
-
-        .profile-image-picker {
-          position: absolute;
-          background-color: #0474ba;
-          color: #ffffff;
-          font-size: 1.4em;
-          padding: 5px;
-          border-radius: 50px;
-          bottom: 0;
-          right: 0;
-        }
+      background-color: #b3b3b3;
+      position: relative;
+      ion-img::part(image) {
+        max-height: 180px;
+      }
+      .profile-image-picker {
+        position: absolute;
+        background-color: #807ff2;
+        color: #fff;
+        font-size: 1.6em;
+        padding: 5px;
+        border-radius: 50px;
+        bottom: -0.7em;
+        right: 0.3em;
+        --ionicon-stroke-width: 30px;
       }
     }
 
@@ -1305,83 +1325,93 @@ app-salon-profile {
 }
 
 app-settings {
-  .settings-header {
-    background-color: #0f83aa;
-    height: 180px;
-  }
+  .settings-container {
+    background-color: #7bcef0;
+    .settings-header {
+      height: 170px;
+    }
 
-  .account-profile {
-    display: flex;
-    flex-direction: row;
-    padding: 0 10px;
-    align-items: center;
-    height: 120px;
-
-    .profile-image {
-      margin-left: 10px;
+    .account-profile {
       display: flex;
+      flex-direction: row;
+      padding: 0 10px;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      padding: 5px;
-      background-color: #ffffff;
-      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-      border-radius: 120px;
+      height: 120px;
 
-      ion-avatar {
-        height: 90px;
-        width: 90px;
-        position: relative;
+      .profile-image {
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        padding: 5px;
+        background-color: #ffffff;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        border-radius: 120px;
 
-        .profile-image-picker {
-          position: absolute;
-          background-color: #0474ba;
-          color: #ffffff;
-          font-size: 1.4em;
-          padding: 5px;
-          border-radius: 50px;
-          bottom: 0;
-          right: 0;
+        ion-avatar {
+          height: 90px;
+          width: 90px;
+          position: relative;
+
+          .profile-image-picker {
+            position: absolute;
+            background-color: #0474ba;
+            color: #ffffff;
+            font-size: 1.4em;
+            padding: 5px;
+            border-radius: 50px;
+            bottom: 0;
+            right: 0;
+          }
+        }
+      }
+
+      .profile-data {
+        margin-left: 20px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        height: 120px;
+
+        .profile-data-salon-name {
+          flex-grow: 1;
+          font-weight: bold;
+          font-size: 1.5em;
+          display: flex;
+          align-items: center;
+        }
+
+        .profile-data-salon-email {
+          flex-grow: 1;
+          font-size: 1.2em;
         }
       }
     }
-
-    .profile-data {
-      margin-left: 20px;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      height: 120px;
-
-      .profile-data-salon-name {
-        flex-grow: 1;
-        font-weight: bold;
-        font-size: 1.5em;
-        display: flex;
-        align-items: center;
-      }
-
-      .profile-data-salon-email {
-        flex-grow: 1;
-        font-size: 1.2em;
+    .settings-list {
+      background-color: #ffffff;
+      border-top: solid 6px #f27b93;
+      border-radius: 0% 40% 100% 100% / 0% 100% 0% 0%;
+      .top-right-rounded {
+        border-radius: 0% 40% 100% 100% / 0% 100% 0% 0%;
       }
     }
-  }
-  .logout-button-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 10px;
-    .logout-button {
+    .logout-button-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 15px;
-      background-color: #0b789cea;
-      font-weight: bold;
-      font-size: 1.1em;
-      border-radius: 5px;
-      color: #ffffff;
+      padding-top: 10px;
+      .logout-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 15px;
+        background-color: #7b93fe;
+        font-weight: bold;
+        font-size: 1.1em;
+        border-radius: 5px;
+        color: #ffffff;
+      }
     }
   }
 }
@@ -1397,7 +1427,7 @@ app-setting-item {
   .setting-icon {
     display: flex;
     font-size: 1.5em;
-    color: #0f83aa;
+    color: #7b93fe;
   }
 
   .profile-data {
@@ -2324,5 +2354,75 @@ app-business-type {
     .typeName {
       color: #6b6b6b;
     }
+  }
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #7bcef2;
+  .login-button {
+    --background: #7bcef2;
+    margin: 40px 25%;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 40px;
+    --border-radius: 5px;
+    --box-shadow: none;
+
+    --color: #ffffff;
+    --box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  .logo-facebook {
+    color: #2152bb;
+  }
+  .logo-google {
+    color: #db4437;
+  }
+  .logo-twitter {
+    color: #00acee;
+  }
+
+  .signup-text {
+    margin-top: 20px;
+    a {
+      text-decoration: none;
+      color: var(--ion-color-primary);
+    }
+    padding-right: 20px;
+    text-align: end;
+  }
+  .login-inputs {
+    padding-top: 30px;
+    border-top: solid 6px #f2d97b;
+    border-radius: 25px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    flex-grow: 1;
+    background-color: #ffffff;
+    position: relative;
+    .login-phrase {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      color: #00000055;
+    }
+  }
+  .login-image {
+    height: 200px;
+    padding: 10px;
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-image::part(image) {
+    background-color: #ffffff;
+    border-radius: 100px;
+    width: 120px;
+    height: 120px;
+    padding: 15px;
   }
 }

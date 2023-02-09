@@ -50,6 +50,9 @@ export class TextareaComponent implements ControlValueAccessor {
   @Input()
   required: boolean;
 
+  @Input()
+  autoGrow: boolean;
+
   inputValue: number;
   constructor() {}
 

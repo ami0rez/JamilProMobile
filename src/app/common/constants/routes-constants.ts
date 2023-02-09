@@ -5,6 +5,7 @@ export class RoutesConstants {
   //auth
   public static readonly auth = 'auth';
   public static readonly register = `${RoutesConstants.auth}/register`;
+  public static readonly ChangePassword = `${RoutesConstants.auth}/change-password`;
   public static readonly login = 'login';
   public static readonly securrityUrl = ''
   public static readonly logout = `${RoutesConstants.securrityUrl}/logout`

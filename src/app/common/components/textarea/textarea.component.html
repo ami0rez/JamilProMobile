@@ -1,18 +1,19 @@
-<ion-item lines="none" class="ion-item">
-  <fieldset class="input-item">
-    <legend *ngIf="showLabel">{{ label }}</legend>
-    <ion-item>
-      <ion-textarea
-        [(ngModel)]="value"
-        [autocapitalize]="autocapitalize"
-        [inputmode]="inputmode"
-        [maxlength]="maxlength"
-        [minlength]="minlength"
-        [placeholder]="placeholder"
-        [readonly]="readonly"
-        [required]="required"
-      >
-      </ion-textarea>
-    </ion-item>
-  </fieldset>
+<ion-item lines="none" class="ion-item" class="input-item">
+  <ion-label position="stacked" *ngIf="showLabel">
+    {{ label }}
+  </ion-label>
+  <div class="input-content">
+    <ion-textarea
+    [(ngModel)]="value"
+    [autocapitalize]="autocapitalize"
+    [inputmode]="inputmode"
+    [maxlength]="maxlength"
+    [minlength]="minlength"
+    [placeholder]="placeholder"
+    [readonly]="readonly"
+    [required]="required"
+    [autoGrow]="autoGrow"
+  >
+  </ion-textarea>
+  </div>
 </ion-item>
